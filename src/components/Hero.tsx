@@ -39,6 +39,7 @@ export default function Hero() {
           alt="Aman Sahu Background"
           src={HeroImage}
           fill
+          sizes="100vw"
           className=" hidden md:block object-cover object-[calc(50%-100px)_center]  lg:object-[calc(50%+250px)_center]"
           placeholder="blur"
           priority
