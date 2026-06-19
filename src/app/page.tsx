@@ -27,6 +27,9 @@ export default function Home() {
       touchMultiplier: 2,
     });
 
+    // Make lenis globally accessible for components like Navbar
+    (window as any).lenis = lenis;
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -36,6 +39,7 @@ export default function Home() {
 
     return () => {
       lenis.destroy();
+      delete (window as any).lenis;
     };
   }, []);
 
