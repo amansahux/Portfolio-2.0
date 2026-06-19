@@ -14,7 +14,7 @@ const defaultProjects = [
     category: "E-COMMERCE SHOP",
     title: "SNITCH",
     description:
-      "Designed and developed SNITCH, a scalable multi-role e-commerce platform featuring luxury UI/UX, secure payment integration, order lifecycle management, inventory tracking, wishlist system, and real-time seller analytics.",
+      "SNITCH is a full-stack fashion e-commerce platform. Designed with separate buyer and seller experiences, it offers features such as wishlist management, secure checkout, order tracking, inventory management, seller analytics, and revenue insights. While building SNITCH, I focused on creating a scalable architecture, reusable component systems, responsive user interfaces, and production-oriented backend workflows. This project strengthened my understanding of real-world application development, performance optimization, system design, and the challenges involved in transforming an idea into a complete product.",
     tags: [
       "React js",
       "Express js",
@@ -24,49 +24,23 @@ const defaultProjects = [
       "Redis",
       "RazorPay",
     ],
-    imageSrc: { Snitch },
+    imageSrc:
+      "https://ik.imagekit.io/sg9dyvpi0/Snitch.png?updatedAt=1781880770155",
     imageAlt: "SNITCH",
-    demoUrl: "#",
-    codeUrl: "#",
+    demoUrl: "https://snitch-kd3p.onrender.com",
+    codeUrl: "https://github.com/amansahux/Snitch",
   },
   {
-    category: "SAAS DASHBOARD",
-    title: "MetricsX Analytics",
+    category: "AI POWERED ",
+    title: "RESUME BUILDER",
     description:
-      "Real-time data visualization dashboard for marketing teams. Implemented WebSocket connections for live updates and complex D3.js chart integrations.",
-    tags: ["MongoDB", "Express", "Socket.io"],
+      "Built an AI-powered Resume Builder that enables users to create professional, ATS-optimized resumes through an intuitive and responsive interface. Integrated AI assistance to generate tailored summaries, skills, and work experience content, improving resume quality and reducing manual effort. Developed features including real-time resume preview, multiple customizable templates, secure data persistence, and PDF export. Focused on delivering a seamless user experience while leveraging modern full-stack technologies and AI capabilities.",
+    tags: ["Next js", "TypeScript", "TAILWIND CSS", "GOOGLE GEMINI" ,"Framer Motion"],
     imageSrc:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBoWqgY487-bk68cXtVTsBGhXfZBHnOVK_vx3r9x4bFoXawb2W6Th15e8e2JUtqaKIVLywvBUOZxbOKG1mUYxfOrX_8IMO2BBN_rhpMgHF0GaBXayySHz3iFwJ-PQ_qvSuz2K7COtBFzyaC9wZMW21m0rn7w5ldBS0Uo9qowSFauYVbCQQgkjEO8tZxn8pfYL6iMY6ibnoiGg222SbhIdImI55FfCs7pgcupHUF8wgFWuBBGpadiPpn0bZlKjfBW4aCvejN16wSUfU",
-    imageAlt:
-      "A professional SaaS platform landing page design displayed on a sleek laptop screen. The design uses a sophisticated color scheme of ink-black and vibrant silver accents.",
-    demoUrl: "#",
-    codeUrl: "#",
-  },
-  {
-    category: "CLOUDOPS PLATFORM",
-    title: "CloudSync SaaS Portal",
-    description:
-      "A real-time DevOps metrics monitoring dashboard built with Next.js, WebSockets, and Redis. Features real-time charting, log streaming, and automated alerts.",
-    tags: ["Next.js", "Redis", "WebSockets"],
-    imageSrc:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDHWofg_JlnWAhufsq5dlUfJNQorSAVmvcw_G6cuzaI318nhKgfdDhMJGn3gmVNQo_Z6lYW3kP51y9B6-JqigpCQtbyjmkWwqzle8sYmI8w-OkBpscQnm4Yj0Pedj1y9miVWFyiJH4C9yptCjSsUii5o6j7KyapJK_8DW__Zl1pNLi1mm_FfA_UqdvxGLJdrHvouPGPXFXLlrnQea0yyvums683TLROGYNwrMf5ixY6Vkh2BAec4JU0CVMDKuR6tvCKHfKyFc-sfSE",
-    imageAlt:
-      "A futuristic dashboard UI design for a high-end fintech platform, featuring dark-mode aesthetics with glowing silver data visualizations and translucent frosted glass panels.",
-    demoUrl: "#",
-    codeUrl: "#",
-  },
-  {
-    category: "DEVELOPER TOOLING",
-    title: "DevStream Platform",
-    description:
-      "An interactive code playground and live streaming platform for developers. Includes real-time collaborative editing, video integration, and sandboxed execution.",
-    tags: ["React.js", "WebRTC", "Docker"],
-    imageSrc:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBoWqgY487-bk68cXtVTsBGhXfZBHnOVK_vx3r9x4bFoXawb2W6Th15e8e2JUtqaKIVLywvBUOZxbOKG1mUYxfOrX_8IMO2BBN_rhpMgHF0GaBXayySHz3iFwJ-PQ_qvSuz2K7COtBFzyaC9wZMW21m0rn7w5ldBS0Uo9qowSFauYVbCQQgkjEO8tZxn8pfYL6iMY6ibnoiGg222SbhIdImI55FfCs7pgcupHUF8wgFWuBBGpadiPpn0bZlKjfBW4aCvejN16wSUfU",
-    imageAlt:
-      "A professional SaaS platform landing page design displayed on a sleek laptop screen. The design uses a sophisticated color scheme of ink-black and vibrant silver accents.",
-    demoUrl: "#",
-    codeUrl: "#",
+      "https://ik.imagekit.io/sg9dyvpi0/Resume%20Builder.png?updatedAt=1781882255849",
+    imageAlt: "RESUME BUILDER",
+    demoUrl: "https://resume-builder-nu-woad-89.vercel.app",
+    codeUrl: "https://github.com/amansahux/Resume-Builder",
   },
 ];
 
@@ -93,7 +67,7 @@ export default function ProjectsSection() {
           toggleActions: "play none none none",
         },
         y: 40,
-        opacity: 0,
+        // opacity: 0,
         duration: 0.8,
         stagger: 0.2,
       });

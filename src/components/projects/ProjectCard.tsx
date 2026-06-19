@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
+import type { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight, Code2 } from "lucide-react";
@@ -13,7 +14,7 @@ export interface ProjectProps {
   title: string;
   description: string;
   tags: string[];
-  imageSrc: any;
+  imageSrc: string;
   imageAlt: string;
   demoUrl?: string;
   codeUrl?: string;
