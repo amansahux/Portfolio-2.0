@@ -3,12 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FileCode2, Network, Server, Database } from "lucide-react";
-import ReactLogo from "./logos/ReactLogo";
-import ExpressLogo from "./logos/ExpressLogo";
-import MongoDBLogo from "./logos/MongoDBLogo";
-import JsLogo from "./logos/JsLogo";
-import { NodeJsLogo } from "./logos/NodeJsLogo";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -209,15 +204,22 @@ export default function Technologies() {
             Core Technologies
           </h2>
         </div>
-        <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-fr"
+        >
           {technologies.map((tech, idx) => (
             <div
               key={idx}
-              className="tech-card glass-card p-8 group hover:bg-white/5 transition-all duration-500 rounded-xl flex flex-col justify-between aspect-square"
+              className="tech-card glass-card p-8 group hover:bg-white/5 transition-all duration-500 rounded-xl flex flex-col justify-between h-50 md:h-64"
             >
-              <div className="flex justify-center items-center">
-                {" "}
-                {tech.icon}
+              {/* Icon wrapper with fixed dimensions */}
+              <div className="flex justify-center items-center mb-4">
+                <div className="w-16 h-16 md:h-20 md:w-20 lg:h-25 lg:w-25 xl:w-30 xl:h-30 flex items-center justify-center">
+                  {React.cloneElement(tech.icon as any, {
+                    className: "w-full h-full object-contain",
+                  })}
+                </div>
               </div>
               <div>
                 <h4 className="font-headline-md text-body-lg font-bold mb-2">
