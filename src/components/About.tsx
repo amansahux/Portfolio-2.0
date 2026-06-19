@@ -81,7 +81,7 @@ export default function About() {
                   {stat.label}
                 </h3>
                 <p className="text-headline-md font-bold text-on-surface">{stat.percent}</p>
-                <div className="w-full bg-surface-container-highest h-1.5 mt-4 rounded-full overflow-hidden">
+                <div className="bg-surface-container-highest h-1.5 mt-4 rounded-full overflow-hidden" style={{ width: stat.percent }} >
                   <div 
                     className="skill-progress-bar skill-progress h-full" 
                     style={{ width: stat.percent }}
