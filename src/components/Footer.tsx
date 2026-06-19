@@ -39,7 +39,7 @@ export default function Footer() {
     <footer ref={footerRef} className="bg-surface border-t border-surface-container-highest py-20">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="text-headline-md font-headline-md text-on-surface font-bold tracking-tighter">
-          AMAN.SAHU
+          AMAN SAHU
         </div>
         <p className="font-body-md text-body-md font-label-caps text-label-caps text-on-surface-variant uppercase text-center md:text-left">
           © 2024 AMAN SAHU. ENGINEERED FOR PRECISION.

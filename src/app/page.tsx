@@ -2,6 +2,10 @@
 
 import React, { useEffect } from "react";
 import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -32,6 +36,10 @@ export default function Home() {
 
     function raf(time: number) {
       lenis.raf(time);
+      // Keep GSAP ScrollTrigger in sync with Lenis smooth scrolling
+      if (typeof ScrollTrigger !== "undefined") {
+        ScrollTrigger.update();
+      }
       requestAnimationFrame(raf);
     }
 
