@@ -48,7 +48,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center h-full">
-        <div className="text-headline-md font-headline-md font-bold tracking-tighter text-on-surface text-gradient-silver">
+        <div className="text-headline-md whitespace-nowrap font-headline-md font-bold tracking-tighter text-on-surface text-gradient-silver">
           AMAN SAHU
         </div>
         <div className="hidden md:flex gap-8 items-center">
@@ -80,7 +80,7 @@ export default function Navbar() {
           >
             Contact
           </a>
-          <button className="ml-4 cursor-pointer primary-glow-btn text-on-primary px-6 py-2.5 rounded-full font-label-caps text-label-caps uppercase font-bold transition-all duration-300">
+          <button className="ml-4 whitespace-nowrap  cursor-pointer primary-glow-btn text-on-primary px-6 py-2.5 rounded-full font-label-caps text-label-caps uppercase font-bold transition-all duration-300">
             Let's Talk
           </button>
         </div>
