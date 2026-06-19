@@ -51,6 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning={true}>
       <body
+        cz-shortcut-listen="true"
         className={`${spaceGrotesk.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable} selection:bg-primary-container selection:text-on-primary`}
       >
         {children}

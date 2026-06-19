@@ -40,7 +40,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="selection:bg-primary-container selection:text-on-primary overflow-x-hidden">
+    <main className="selection:bg-primary-container selection:text-on-primary overflhidden">
       <Navbar />
       <Hero />
       <About />
