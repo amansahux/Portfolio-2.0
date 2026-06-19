@@ -5,6 +5,8 @@ import Image from "next/image";
 import gsap from "gsap";
 import { Quote } from "lucide-react";
 import HeroImage from "../assets/Hero.bg.png";
+import HeroSmallImage from "../assets/Hero.small.bg.png";
+
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -37,7 +39,15 @@ export default function Hero() {
           alt="Aman Sahu Background"
           src={HeroImage}
           fill
-          className=" object-cover object-[calc(50%-100px)_center]  lg:object-[calc(50%+250px)_center]"
+          className=" hidden md:block object-cover object-[calc(50%-100px)_center]  lg:object-[calc(50%+250px)_center]"
+          placeholder="blur"
+          priority
+        />
+        <Image
+          alt="Aman Sahu Background"
+          src={HeroSmallImage}
+          fill
+          className=" md:hidden object-cover"
           placeholder="blur"
           priority
         />
@@ -87,7 +97,7 @@ export default function Hero() {
 
         <div className="hero-element mt-20 md:absolute md:bottom-0 md:right-0 flex flex-col items-end">
           <p className="font-display-xl text-headline-lg text-on-surface">
-            $75<span className="text-headline-md opacity-60">.00</span>
+            $20<span className="text-headline-md opacity-60">.00</span>
           </p>
           <p className="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">
             Hourly Rate

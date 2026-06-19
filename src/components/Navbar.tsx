@@ -84,10 +84,6 @@ export default function Navbar() {
             Let's Talk
           </button>
         </div>
-        {/* Mobile Menu Toggle */}
-        <button className="md:hidden text-on-surface">
-          <Menu className="w-6 h-6" />
-        </button>
       </div>
     </nav>
   );

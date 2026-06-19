@@ -54,10 +54,10 @@ export default function About() {
   }, []);
 
   const stats = [
-    { label: "MERN Stack", percent: "90%" },
-    { label: "React/Next", percent: "95%" },
-    { label: "Backend Ops", percent: "85%" },
-    { label: "Architecture", percent: "80%" },
+    { label: "MERN Stack", percent: "70%" },
+    { label: "React/Next", percent: "80%" },
+    { label: "Backend", percent: "75%" },
+    { label: "Architecture", percent: "95%" },
   ];
 
   return (
