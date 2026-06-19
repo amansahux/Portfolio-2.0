@@ -206,12 +206,12 @@ export default function Technologies() {
         </div>
         <div
           ref={gridRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-fr"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-fr items-stretch"
         >
           {technologies.map((tech, idx) => (
             <div
               key={idx}
-              className="tech-card glass-card p-8 group hover:bg-white/5 transition-all duration-500 rounded-xl flex flex-col justify-between h-50 md:h-64"
+              className="tech-card glass-card p-8 group hover:bg-white/5 transition-all duration-500 rounded-xl flex flex-col justify-between h-full"
             >
               {/* Icon wrapper with fixed dimensions */}
               <div className="flex justify-center items-center mb-4">

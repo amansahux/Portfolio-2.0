@@ -12,7 +12,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Technologies from "@/components/Technologies";
 import Services from "@/components/Services";
-import FeaturedProjects from "@/components/FeaturedProjects";
+import ProjectsSection from "@/components/projects/ProjectsSection";
 import StatsSection from "@/components/StatsSection";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
@@ -58,7 +58,7 @@ export default function Home() {
       <About />
       <Technologies />
       <Services />
-      <FeaturedProjects />
+      <ProjectsSection />
       <StatsSection />
       <Testimonials />
       <CTA />

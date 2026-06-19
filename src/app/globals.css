@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+*::-webkit-scrollbar{
+  display: none;
+}
 @theme inline {
   --color-background: #050505;
   --color-surface: #131313;
@@ -142,6 +145,30 @@
   }
   .animate-float {
     animation: float 6s ease-in-out infinite;
+  }
+  .project-image-wrapper {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: box-shadow 0.5s ease, border-color 0.5s ease;
+  }
+  .project-card:hover .project-image-wrapper {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+  }
+  .animated-underline {
+    position: relative;
+  }
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: currentColor;
+    transition: width 0.3s ease-in-out;
+  }
+  .animated-underline:hover::after {
+    width: 100%;
   }
 }
 
