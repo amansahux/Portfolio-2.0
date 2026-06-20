@@ -80,9 +80,9 @@ export default function Navbar() {
           >
             Contact
           </a>
-          <button className="ml-4 whitespace-nowrap  cursor-pointer primary-glow-btn text-on-primary px-6 py-2.5 rounded-full font-label-caps text-label-caps uppercase font-bold transition-all duration-300">
+          <a href="#contact"  onClick={(e) => handleSmoothScroll(e, "#contact")} className="ml-4 whitespace-nowrap  cursor-pointer primary-glow-btn text-on-primary px-6 py-2.5 rounded-full font-label-caps text-label-caps uppercase font-bold transition-all duration-300">
             Let's Talk
-          </button>
+          </a>
         </div>
       </div>
     </nav>

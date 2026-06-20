@@ -67,7 +67,7 @@ export default function Footer() {
           </a>
           <a
             className="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase"
-            href="mailto:example@example.com"
+            href="mailto:amansahu1126.com"
           >
             Email
           </a>

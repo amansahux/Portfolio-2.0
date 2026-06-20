@@ -87,7 +87,19 @@ export default function Hero() {
           </div>
 
           <div className="hero-element flex flex-wrap gap-6">
-            <button className="primary-glow-btn cursor-pointer text-on-primary px-10 py-5 rounded-full font-label-caps text-label-caps uppercase font-extrabold transition-all duration-300">
+            <button 
+              onClick={() => {
+                if ((window as any).lenis) {
+                  (window as any).lenis.scrollTo("#contact");
+                } else {
+                  const target = document.querySelector("#contact");
+                  if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                  }
+                }
+              }}
+              className="primary-glow-btn cursor-pointer text-on-primary px-10 py-5 rounded-full font-label-caps text-label-caps uppercase font-extrabold transition-all duration-300"
+            >
               Hire Me
             </button>
             <button 

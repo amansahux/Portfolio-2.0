@@ -14,16 +14,22 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const bodyOverflowRef = useRef<string>("");
+  const htmlOverflowRef = useRef<string>("");
 
   useEffect(() => {
     if (isOpen) {
+      bodyOverflowRef.current = document.body.style.overflow;
+      htmlOverflowRef.current = document.documentElement.style.overflow;
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+
       if ((window as any).lenis) {
         (window as any).lenis.stop?.();
       }
-      
+
       const tl = gsap.timeline();
-      
+
       // Reveal wrapper
       gsap.set(wrapperRef.current, { visibility: "visible", pointerEvents: "auto" });
 
@@ -49,18 +55,26 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       }, 0.1);
 
       tl.fromTo(
-        ".form-field-reveal",
+        modalRef.current?.querySelectorAll(".form-field-reveal") ?? [],
         { opacity: 0, y: 10 },
         { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "power2.out" },
         0.3
       );
-      
+
+      requestAnimationFrame(() => {
+        const firstFocusable = modalRef.current?.querySelector<HTMLElement>(
+          'input, select, textarea, button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        firstFocusable?.focus();
+      });
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = bodyOverflowRef.current;
+      document.documentElement.style.overflow = htmlOverflowRef.current;
+
       if ((window as any).lenis) {
         (window as any).lenis.start?.();
       }
-      
+
       const tl = gsap.timeline({
         onComplete: () => {
           gsap.set(wrapperRef.current, { visibility: "hidden", pointerEvents: "none" });
@@ -83,6 +97,14 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         ease: "power2.in"
       }, 0.1);
     }
+
+    return () => {
+      document.body.style.overflow = bodyOverflowRef.current;
+      document.documentElement.style.overflow = htmlOverflowRef.current;
+      if ((window as any).lenis) {
+        (window as any).lenis.start?.();
+      }
+    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -98,7 +120,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   return (
     <div 
       ref={wrapperRef}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-margin-desktop invisible pointer-events-none"
+      className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:items-center md:p-margin-desktop invisible pointer-events-none"
     >
       {/* Backdrop */}
       <div 
@@ -114,7 +136,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         aria-labelledby="modal-title" 
         aria-modal="true" 
         role="dialog"
-        className="relative w-full max-w-[650px] max-h-[calc(100vh-var(--spacing-margin-mobile)*2)] md:max-h-[calc(100vh-var(--spacing-margin-desktop)*2)] flex flex-col bg-surface-container rounded-2xl border border-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] invisible overflow-y-auto"
+        tabIndex={-1}
+        data-lenis-prevent
+        className="relative w-full max-w-[650px] max-h-[90dvh] md:max-h-[calc(100vh-var(--spacing-margin-desktop)*2)] flex flex-col bg-surface-container rounded-2xl border border-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] invisible overflow-hidden"
       >
         {/* Subtle Hover Glow Top Edge */}
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/0 to-transparent hover:via-primary/40 transition-all duration-700 pointer-events-none z-20"></div>
@@ -128,7 +152,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           <X size={20} />
         </button>
 
-        <div className="p-8 md:p-12 relative z-0 overflow-y-auto min-h-0 custom-scrollbar">
+        <div className="p-8 md:p-12 relative z-0 flex-1 min-h-0 overflow-y-auto overscroll-contain custom-scrollbar">
           {/* Header Section */}
           <div className="mb-10 form-field-reveal">
             <div className="inline-flex items-center gap-2 mb-4">
@@ -147,7 +171,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           </div>
 
           {/* Form Component */}
-          <ContactForm />
+          <ContactForm isOpen={isOpen} />
         </div>
       </div>
     </div>
