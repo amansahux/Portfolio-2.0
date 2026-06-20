@@ -50,9 +50,9 @@ export default function CTA() {
           <button className="primary-glow-btn cursor-pointer text-on-primary px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-extrabold transition-all duration-300">
             Contact Me
           </button>
-          <button className="border cursor-pointer border-outline-variant text-on-surface px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-bold hover:border-primary hover:text-primary transition-all duration-300 backdrop-blur-md">
+          <a href="/Aman Resume.pdf" download="Aman Resume.pdf" className="border cursor-pointer border-outline-variant text-on-surface px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-bold hover:border-primary hover:text-primary transition-all duration-300 backdrop-blur-md">
             Download Resume
-          </button>
+          </a>
         </div>
         
         <div className="cta-element mt-20 grid grid-cols-2 md:grid-cols-3 gap-12 pt-20 border-t border-white/5">

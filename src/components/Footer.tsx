@@ -42,7 +42,7 @@ export default function Footer() {
           AMAN SAHU
         </div>
         <p className="font-body-md text-body-md font-label-caps text-label-caps text-on-surface-variant uppercase text-center md:text-left">
-          © 2024 AMAN SAHU. ENGINEERED FOR PRECISION.
+          © {new Date().getFullYear()} AMAN SAHU. ALL RIGHTS RESERVED.
         </p>
         <div className="flex gap-8">
           <a
