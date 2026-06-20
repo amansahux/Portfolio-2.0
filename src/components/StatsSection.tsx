@@ -30,7 +30,7 @@ export default function StatsSection() {
         const targetStr = el.innerText;
         const targetValue = parseInt(targetStr.replace(/[^0-9]/g, ""), 10) || 0;
         const suffix = targetStr.replace(/[0-9]/g, "");
-        
+
         gsap.fromTo(
           el,
           { innerText: "0" },
@@ -44,9 +44,10 @@ export default function StatsSection() {
             snap: { innerText: 1 },
             ease: "power1.inOut",
             onUpdate: function () {
-              el.innerText = Math.round(Number(this.targets()[0].innerText)) + suffix;
+              el.innerText =
+                Math.round(Number(this.targets()[0].innerText)) + suffix;
             },
-          }
+          },
         );
       });
     }, sectionRef);
@@ -55,16 +56,22 @@ export default function StatsSection() {
   }, []);
 
   const stats = [
-    { value: "50+", label: "Projects Completed" },
-    { value: "12+", label: "Happy Clients" },
-    { value: "15+", label: "Tech Stack Tools" },
-    { value: "99%", label: "Satisfaction Rate" },
+    { value: "10+", label: "Personal Projects" },
+    { value: "1+", label: "Years of Learning" },
+    { value: "15+", label: "Technologies Learned" },
+    { value: "500+", label: "Hours Coding" },
   ];
 
   return (
-    <section ref={sectionRef} className="py-24 bg-surface-container-low border-y border-white/5">
+    <section
+      ref={sectionRef}
+      className="py-24 bg-surface-container-low border-y border-white/5"
+    >
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-        <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center"
+        >
           {stats.map((stat, idx) => (
             <div key={idx} className="stat-item">
               <p className="stat-number font-display-xl text-headline-lg text-primary mb-2">

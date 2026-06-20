@@ -47,10 +47,10 @@ export default function CTA() {
         </h2>
         
         <div className="cta-element flex flex-wrap justify-center gap-8 items-center">
-          <button className="primary-glow-btn text-on-primary px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-extrabold transition-all duration-300">
+          <button className="primary-glow-btn cursor-pointer text-on-primary px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-extrabold transition-all duration-300">
             Contact Me
           </button>
-          <button className="border border-outline-variant text-on-surface px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-bold hover:border-primary hover:text-primary transition-all duration-300 backdrop-blur-md">
+          <button className="border cursor-pointer border-outline-variant text-on-surface px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-bold hover:border-primary hover:text-primary transition-all duration-300 backdrop-blur-md">
             Download Resume
           </button>
         </div>

@@ -60,7 +60,7 @@ export default function Home() {
       <Services />
       <ProjectsSection />
       <StatsSection />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <CTA />
       <Footer />
     </main>

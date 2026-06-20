@@ -13,12 +13,6 @@ export default function ProjectsHeader() {
           Featured Projects
         </h2>
       </div>
-      <div className="md:col-span-4 pb-2">
-        <p className="font-body-lg text-on-surface-variant leading-relaxed">
-          A curated selection of my most impactful digital products, demonstrating
-          engineering excellence and premium design execution.
-        </p>
-      </div>
     </div>
   );
 }
