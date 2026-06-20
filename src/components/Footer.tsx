@@ -36,7 +36,10 @@ export default function Footer() {
   };
 
   return (
-    <footer ref={footerRef} className="bg-surface border-t border-surface-container-highest py-20">
+    <footer
+      ref={footerRef}
+      className="bg-surface border-t border-surface-container-highest py-20"
+    >
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="text-headline-md font-headline-md text-on-surface font-bold tracking-tighter">
           AMAN SAHU
@@ -55,13 +58,17 @@ export default function Footer() {
           </a>
           <a
             className="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase"
-            href="#"
+            href="https://amansahu.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            LinkedIn
+            Portfolio
           </a>
           <a
             className="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase"
-            href="#"
+            href="https://x.com/amansahux"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Twitter
           </a>

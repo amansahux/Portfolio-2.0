@@ -50,8 +50,20 @@ export default function CTA() {
 
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
         <h2 className="cta-element font-display-xl text-[48px] md:text-display-xl text-on-surface mb-12">
-          LET'S BUILD <span className=" hidden xl:inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span> SOMETHING <br />
-          <span className="text-gradient-silver">AMAZING <span className=" hidden xl:inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span> TOGETHER</span>
+          LET'S BUILD{" "}
+          <span className=" hidden xl:inline">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
+          </span>{" "}
+          SOMETHING <br />
+          <span className="text-gradient-silver">
+            AMAZING{" "}
+            <span className=" hidden xl:inline">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+            </span>{" "}
+            TOGETHER
+          </span>
         </h2>
 
         <div className="cta-element flex flex-wrap justify-center gap-8 lg:gap-60 items-center">
@@ -63,7 +75,7 @@ export default function CTA() {
           </button>
           <a
             href="/Aman Resume.pdf"
-            download="Aman Resume.pdf"
+            download="/Aman Resume.pdf"
             className="border cursor-pointer border-outline-variant text-on-surface px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-bold hover:border-primary hover:text-primary transition-all duration-300 backdrop-blur-md"
           >
             Download Resume
