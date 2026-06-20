@@ -53,17 +53,12 @@ export async function POST(request: Request) {
 
     const { name, email, subject, message } = payload;
 
-    if (!process.env.RESEND_API_KEY) {
-      throw new Error("RESEND_API_KEY is missing");
-    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
-    if (!process.env.TO_EMAIL) {
-      throw new Error("TO_EMAIL is missing");
-    }
-    const resend = new Resend(`${process.env.RESEND_API_KEY}`);
-    await resend.emails.send({
-      from: `onboarding@resend.dev`,
-      to: `${process.env.TO_EMAIL}`,
+    const { data, error: resendError } = await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: process.env.TO_EMAIL!,
+      replyTo: email,
       subject: `New Inquiry: ${subject} from ${name}`,
       html: `
         <!DOCTYPE html>
@@ -111,6 +106,11 @@ export async function POST(request: Request) {
         </html>
       `
     });
+
+    if (resendError) {
+      throw new Error(resendError.message);
+    }
+
     return NextResponse.json(
       {
         message:
@@ -118,11 +118,13 @@ export async function POST(request: Request) {
       },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Resend Error:", errorMessage);
     return NextResponse.json(
       {
         message: "We couldn't send your message right now. Please try again in a moment.",
-        error: error
+        error: errorMessage
       },
       { status: 500 }
     );
