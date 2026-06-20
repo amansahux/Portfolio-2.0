@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Resend } from 'resend';
 
 type ContactPayload = {
   name?: string;
@@ -44,13 +45,72 @@ function validateContactPayload(payload: ContactPayload) {
 export async function POST(request: Request) {
   try {
     const payload = (await request.json()) as ContactPayload;
-    console.log(payload)
     const error = validateContactPayload(payload);
 
     if (error) {
       return NextResponse.json({ message: error }, { status: 400 });
     }
 
+    const { name, email, subject, message } = payload;
+
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error("RESEND_API_KEY is missing");
+    }
+
+    if (!process.env.TO_EMAIL) {
+      throw new Error("TO_EMAIL is missing");
+    }
+    const resend = new Resend(`${process.env.RESEND_API_KEY}`);
+    await resend.emails.send({
+      from: `onboarding@resend.dev`,
+      to: `${process.env.TO_EMAIL}`,
+      subject: `New Inquiry: ${subject} from ${name}`,
+      html: `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #050505; color: #e5e2e1; margin: 0; padding: 0; }
+            .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+            .card { background-color: #131313; border: 1px solid #333; border-radius: 12px; padding: 40px; }
+            .header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 20px; }
+            .header h1 { margin: 0; font-size: 20px; color: #e8e8e8; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; }
+            .field { margin-bottom: 24px; }
+            .label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; display: block; }
+            .value { font-size: 16px; color: #e5e2e1; line-height: 1.6; margin: 0; }
+            .message-box { background-color: #0e0e0e; border: 1px solid #222; border-radius: 8px; padding: 24px; margin-top: 8px; }
+            .footer { text-align: center; margin-top: 30px; font-size: 12px; color: #666; letter-spacing: 1px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="card">
+              <div class="header">
+                <h1>New Portfolio Message</h1>
+              </div>
+              <div class="field">
+                <span class="label">Sender Details</span>
+                <p class="value"><strong>${name}</strong><br><a href="mailto:${email}" style="color: #c0c0c0; text-decoration: none;">${email}</a></p>
+              </div>
+              <div class="field">
+                <span class="label">Inquiry Type</span>
+                <p class="value" style="text-transform: capitalize;">${subject}</p>
+              </div>
+              <div class="field">
+                <span class="label">Message</span>
+                <div class="message-box">
+                  <p class="value" style="white-space: pre-wrap;">${message}</p>
+                </div>
+              </div>
+            </div>
+            <div class="footer">
+              <p>Sent securely from your MERN Developer Portfolio</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `
+    });
     return NextResponse.json(
       {
         message:
@@ -58,10 +118,11 @@ export async function POST(request: Request) {
       },
       { status: 200 }
     );
-  } catch {
+  } catch (error) {
     return NextResponse.json(
       {
         message: "We couldn't send your message right now. Please try again in a moment.",
+        error: error
       },
       { status: 500 }
     );
