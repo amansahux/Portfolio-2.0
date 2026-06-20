@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ContactModal from "./contact/ContactModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function CTA() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -47,7 +49,10 @@ export default function CTA() {
         </h2>
         
         <div className="cta-element flex flex-wrap justify-center gap-8 items-center">
-          <button className="primary-glow-btn cursor-pointer text-on-primary px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-extrabold transition-all duration-300">
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="primary-glow-btn cursor-pointer text-on-primary px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-extrabold transition-all duration-300"
+          >
             Contact Me
           </button>
           <a href="/Aman Resume.pdf" download="Aman Resume.pdf" className="border cursor-pointer border-outline-variant text-on-surface px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-bold hover:border-primary hover:text-primary transition-all duration-300 backdrop-blur-md">
@@ -70,6 +75,8 @@ export default function CTA() {
           </div>
         </div>
       </div>
+
+      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }
