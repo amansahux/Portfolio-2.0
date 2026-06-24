@@ -8,19 +8,21 @@ import HeroImage from "../assets/Hero.bg.png";
 import HeroSmallImage from "../assets/Hero.small.bg.png";
 
 
-export default function Hero() {
+export default function Hero({ isReady = true }: { isReady?: boolean }) {
   const heroRef = useRef<HTMLElement>(null);
+    const tlRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Fade and upward motion
-      gsap.from(".hero-element", {
+     tlRef.current = gsap.timeline({ paused: true });
+      tlRef.current.from(".hero-element", {
         y: 50,
         opacity: 0,
         duration: 1,
         stagger: 0.15,
         ease: "power3.out",
-        delay: 0.5,
+        delay: 0.2,
       });
 
       // Subtle float animation for the image container is handled via CSS class `animate-float` or GSAP
@@ -28,7 +30,11 @@ export default function Hero() {
 
     return () => ctx.revert();
   }, []);
-
+  useEffect(() => {
+    if (isReady && tlRef.current) {
+      tlRef.current.play();
+    }
+  }, [isReady]);
   return (
     <section
       ref={heroRef}

@@ -4,16 +4,17 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Menu } from "lucide-react";
 
-export default function Navbar() {
+export default function Navbar({ isReady = true }: { isReady?: boolean }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
+  const tlRef = useRef<gsap.core.Tween | null>(null);
 
   useEffect(() => {
     // GSAP reveal animation on mount
-    gsap.fromTo(
+    tlRef.current = gsap.fromTo(
       navRef.current,
       { y: -100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+      { y: 0, opacity: 1, duration: 1, ease: "power3.out", paused: true },
     );
 
     const handleScroll = () => {
@@ -28,7 +29,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  useEffect(() => {
+    if (isReady && tlRef.current) {
+      tlRef.current.play();
+    }
+  }, [isReady]);
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string,
+  ) => {
     e.preventDefault();
     if ((window as any).lenis) {
       (window as any).lenis.scrollTo(targetId);
@@ -80,7 +89,11 @@ export default function Navbar() {
           >
             Contact
           </a>
-          <a href="#contact"  onClick={(e) => handleSmoothScroll(e, "#contact")} className="ml-4 whitespace-nowrap  cursor-pointer primary-glow-btn text-on-primary px-6 py-2.5 rounded-full font-label-caps text-label-caps uppercase font-bold transition-all duration-300">
+          <a
+            href="#contact"
+            onClick={(e) => handleSmoothScroll(e, "#contact")}
+            className="ml-4 whitespace-nowrap  cursor-pointer primary-glow-btn text-on-primary px-6 py-2.5 rounded-full font-label-caps text-label-caps uppercase font-bold transition-all duration-300"
+          >
             Let's Talk
           </a>
         </div>
