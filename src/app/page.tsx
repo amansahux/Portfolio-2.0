@@ -24,9 +24,9 @@ export default function Home() {
   const loaderRef = useRef<HTMLDivElement>(null);
   function handleLoading() {
     gsap.to(loaderRef.current, {
+      opacity: 0,
       yPercent: -100,
       duration: 1,
-      delay: 0.2,
       ease: "power4.inOut",
       onComplete: () => {
         setIsReady(true);
@@ -39,7 +39,7 @@ export default function Home() {
     }
   }, [isReady]);
 
- useEffect(() => {
+  useEffect(() => {
     // Simulate loading progress
     const interval = setInterval(() => {
       setProgress((prev) => {
@@ -64,7 +64,7 @@ export default function Home() {
 
     // Make lenis globally accessible for components like Navbar
     (window as any).lenis = lenis;
-    lenis.stop()
+    lenis.stop();
 
     function raf(time: number) {
       lenis.raf(time);
@@ -85,7 +85,7 @@ export default function Home() {
 
   return (
     <main className="selection:bg-primary-container selection:text-on-primary overflow-hidden">
-     <div
+      <div
         ref={loaderRef}
         className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#050505] text-white overflow-hidden"
       >
@@ -94,7 +94,7 @@ export default function Home() {
 
         <div className="relative z-10 flex flex-col items-center justify-center">
           {/* Number Display */}
-         <div className="flex items-baseline mb-6 font-space-grotesk">
+          <div className="flex items-baseline mb-6 font-space-grotesk">
             <span className="text-8xl md:text-9xl lg:text-[180px] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white/80 to-white/10 select-none pr-4">
               {Math.min(progress, 100)}
             </span>
@@ -117,7 +117,7 @@ export default function Home() {
           </p>
         </div>
       </div>
-     <Navbar isReady={isReady} />
+      <Navbar isReady={isReady} />
       <Hero isReady={isReady} />
       <About />
       <Technologies />

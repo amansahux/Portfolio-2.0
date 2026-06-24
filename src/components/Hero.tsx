@@ -22,7 +22,6 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
         duration: 1,
         stagger: 0.15,
         ease: "power3.out",
-        delay: 0.2,
       });
 
       // Subtle float animation for the image container is handled via CSS class `animate-float` or GSAP
