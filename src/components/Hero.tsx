@@ -19,7 +19,7 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
       tlRef.current.from(".hero-element", {
         y: 50,
         opacity: 0,
-        duration: 1,
+        duration: 0.5,
         stagger: 0.15,
         ease: "power3.out",
       });

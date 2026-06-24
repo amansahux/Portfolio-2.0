@@ -14,7 +14,7 @@ export default function Navbar({ isReady = true }: { isReady?: boolean }) {
     tlRef.current = gsap.fromTo(
       navRef.current,
       { y: -100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: "power3.out", paused: true },
+      { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", paused: true },
     );
 
     const handleScroll = () => {
