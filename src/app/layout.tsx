@@ -50,6 +50,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning={true}>
+      <head>
+       <meta name="google-site-verification" content="Nwn4YmsL8cjPG_q23qGcY23I9nnnBHUx4zfmEjuHq2Q" />
+      </head>
       <body
         cz-shortcut-listen="true"
         className={`${spaceGrotesk.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable} selection:bg-primary-container selection:text-on-primary`}
