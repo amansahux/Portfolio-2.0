@@ -58,11 +58,11 @@ export default function Footer() {
           </a>
           <a
             className="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase"
-            href="https://amansahu.vercel.app"
+            href="https://www.linkedin.com/in/aman-kumar-sahu-8685a8419?trk=contact-info"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Portfolio
+            Linkdin
           </a>
           <a
             className="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase"
