@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MetadataRoute } from "next";
 import {
   Space_Grotesk,
   Hanken_Grotesk,
@@ -41,10 +42,18 @@ export const metadata: Metadata = {
     "Frontend Developer",
     "Backend Developer",
   ],
-   verification: {
+  verification: {
     google: "Nwn4YmsL8cjPG_q23qGcY23I9nnnBHUx4zfmEjuHq2Q",
   },
 };
+export function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: "https://your-project.vercel.app",
+      lastModified: new Date(),
+    },
+  ];
+}
 
 export default function RootLayout({
   children,
