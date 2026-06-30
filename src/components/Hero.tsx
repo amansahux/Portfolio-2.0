@@ -105,7 +105,7 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
               }}
               className="primary-glow-btn cursor-pointer text-on-primary px-10 py-5 rounded-full font-label-caps text-label-caps uppercase font-extrabold transition-all duration-300"
             >
-              Hire Me
+             Book Your Call
             </button>
             <button 
               onClick={() => {
