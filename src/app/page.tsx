@@ -49,7 +49,7 @@ export default function Home() {
         }
         return prev + 1;
       });
-    }, 50);
+    }, 25);
 
     // Initialize smooth scrolling with Lenis
     const lenis = new Lenis({

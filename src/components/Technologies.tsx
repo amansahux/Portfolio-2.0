@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Technologies() {
@@ -178,11 +177,33 @@ export default function Technologies() {
 
     {
       name: "GSAP",
-      percent: "60%",
+      percent: "70%",
       icon: (
         <img
           src="https://cdn.simpleicons.org/greensock/88CE02"
           alt="GSAP"
+          className="h-40 w-40"
+        />
+      ),
+    },
+    {
+      name: "GEN AI",
+      percent: "60%",
+      icon: (
+        <img
+          src="https://ik.imagekit.io/sg9dyvpi0/Screenshot_2026-07-28_162233-removebg-preview.png"
+          alt="GEN AI"
+          className="h-40 w-40"
+        />
+      ),
+    },
+    {
+      name: "LangChain",
+      percent: "60%",
+      icon: (
+        <img
+          src="https://ik.imagekit.io/sg9dyvpi0/Screenshot_2026-07-28_162452-removebg-preview.png"
+          alt="LangChain"
           className="h-40 w-40"
         />
       ),
