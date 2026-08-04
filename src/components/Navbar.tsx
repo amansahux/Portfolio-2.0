@@ -57,9 +57,9 @@ export default function Navbar({ isReady = true }: { isReady?: boolean }) {
       }`}
     >
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center h-full">
-        <div className="text-headline-md whitespace-nowrap font-headline-md font-bold tracking-tighter text-on-surface text-gradient-silver">
+        <h1 className="text-headline-md whitespace-nowrap font-headline-md font-bold tracking-tighter text-on-surface text-gradient-silver">
           AMAN SAHU
-        </div>
+        </h1>
         <div className="hidden md:flex gap-8 items-center">
           <a
             href="#work"
