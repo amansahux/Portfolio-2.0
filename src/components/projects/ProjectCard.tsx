@@ -10,6 +10,7 @@ import { ArrowUpRight, Code2 } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 export interface ProjectProps {
+  slug?: string;
   category: string;
   title: string;
   description: string;
