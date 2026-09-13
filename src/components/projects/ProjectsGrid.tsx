@@ -16,13 +16,11 @@ export default function ProjectsGrid({
   return (
     <div className="space-y-32">
       {projects.map((project, idx) => (
-        <Link key={idx} href={`/projects/${project.slug}`}>
         <ProjectCard
           key={idx}
           {...project}
           index={startIndex + idx}
         />
-        </Link>
       ))}
     </div>
   );

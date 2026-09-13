@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import type { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -23,6 +24,7 @@ export interface ProjectProps {
 }
 
 export default function ProjectCard({
+  slug,
   category,
   title,
   description,
@@ -71,13 +73,25 @@ export default function ProjectCard({
           isOdd ? "order-1 md:order-2" : ""
         }`}
       >
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          width={800}
-          height={600}
-          className="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700 ease-out"
-        />
+        {slug ? (
+          <Link href={`/projects/${slug}`} className="block overflow-hidden">
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              width={800}
+              height={600}
+              className="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700 ease-out cursor-pointer"
+            />
+          </Link>
+        ) : (
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            width={800}
+            height={600}
+            className="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700 ease-out"
+          />
+        )}
       </div>
 
       {/* Content Container */}
@@ -93,7 +107,13 @@ export default function ProjectCard({
         </div>
 
         <h3 className="font-headline-lg text-headline-lg text-on-surface mb-6">
-          {title}
+          {slug ? (
+            <Link href={`/projects/${slug}`} className="hover:text-primary transition-colors cursor-pointer">
+              {title}
+            </Link>
+          ) : (
+            title
+          )}
         </h3>
 
         <p className="font-body-lg text-on-surface-variant mb-10 leading-relaxed">

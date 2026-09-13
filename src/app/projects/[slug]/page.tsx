@@ -2,8 +2,13 @@ import React from "react";
 import { projectsData } from "@/data/projects";
 import { notFound } from "next/navigation";
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = projectsData.find((p) => p.slug === params.slug);
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export default async function ProjectPage({ params }: PageProps) {
+  const { slug } = await params;
+  const project = projectsData.find((p) => p.slug === slug);
 
   if (!project) {
     notFound();
