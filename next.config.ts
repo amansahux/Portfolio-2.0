@@ -1,11 +1,22 @@
-import { NextConfig } from "next";
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: [
-      "contribution.usercontent.google.com",
-      "ik.imagekit.io",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+      },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "contribution.usercontent.google.com",
+      },
     ],
   },
 };
+
 export default nextConfig;
