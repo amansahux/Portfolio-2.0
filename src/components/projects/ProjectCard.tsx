@@ -15,7 +15,8 @@ export interface ProjectProps {
   category: string;
   title: string;
   description: string;
-  tags: string[];
+  tags?: string[];
+  technologies?: string[];
   imageSrc: string;
   imageAlt: string;
   demoUrl?: string;
@@ -29,12 +30,14 @@ export default function ProjectCard({
   title,
   description,
   tags,
+  technologies,
   imageSrc,
   imageAlt,
   demoUrl = "#",
   codeUrl = "#",
   index,
 }: ProjectProps) {
+  const displayTags = tags || technologies || [];
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -122,7 +125,7 @@ export default function ProjectCard({
 
         {/* Tags */}
         <div className="flex gap-3 mb-10 flex-wrap">
-          {tags.map((tag, idx) => (
+          {displayTags.map((tag, idx) => (
             <span
               key={idx}
               className="border border-outline-variant px-4 py-2 rounded-full text-label-caps font-label-caps text-on-surface-variant uppercase tracking-wider backdrop-blur-sm bg-white/5"
@@ -132,7 +135,7 @@ export default function ProjectCard({
           ))}
         </div>
 
-        {/* Action Links */}
+        {/* Action Links
         <div className="flex gap-8">
           <a
             href={demoUrl}
@@ -150,7 +153,7 @@ export default function ProjectCard({
           >
             VIEW CODE <Code2 className="w-[18px] h-[18px]" />
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );

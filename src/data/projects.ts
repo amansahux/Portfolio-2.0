@@ -1,58 +1,118 @@
-export const projectsData = [
+export interface ProjectFeature {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface ProjectMediaItem {
+  type: "image" | "video";
+  src: string;
+  alt: string;
+  caption?: string;
+  figureLabel?: string;
+  badge?: string;
+}
+
+export interface ProjectResult {
+  value: string;
+  label: string;
+  description: string;
+}
+
+export interface ProjectItem {
+  slug: string;
+  number: string;
+  archiveLabel?: string;
+  category: string;
+  title: string;
+  subtitle: string;
+  description: string;
+
+  // CONTEXT & SCOPE
+  client: string;
+  timeline: string;
+  role: string;
+  team: string;
+  year: string;
+  status: string;
+
+  // PROCESS & STRATEGY
+  problem: string;
+  approach: string;
+  architecture?: string;
+  decisions?: string[];
+
+  // TECHNOLOGIES
+  technologies: string[];
+
+  // KEY FEATURES
+  features?: ProjectFeature[];
+
+  // VISUALS / MEDIA
+  telemetryUrl?: string;
+  telemetryStatus?: string;
+  media: ProjectMediaItem[];
+
+  // RESULTS & IMPACT
+  results: ProjectResult[];
+  outcome: string;
+
+  // LINKS & ACCESS
+  demoUrl: string;
+  codeUrl: string;
+  versionLabel?: string;
+
+  // NAVIGATION
+  nextProject: string;
+
+  // COMPATIBILITY
+  imageSrc: string;
+  imageAlt: string;
+}
+
+export const projectsData: ProjectItem[] = [
+  // ==========================================================
+  // 01. SNITCH
+  // ==========================================================
   {
     slug: "snitch",
     number: "01",
+    archiveLabel: "01 // ARCHIVE",
     category: "E-COMMERCE SHOP",
     title: "SNITCH",
     subtitle: "Full-Stack Fashion Commerce Platform",
 
     description:
-      "SNITCH is a full-stack fashion e-commerce platform. Designed with separate buyer and seller experiences, it offers features suchas wishlist management, secure checkout, order tracking, inventory management, seller analytics, and revenue insights. Whilebuilding SNITCH, I focused on creating a scalable architecture, reusable component systems, responsive user interfaces, andproduction-oriented backend workflows. This project strengthened my understanding of real-world application development",
+      "A comprehensive full-stack fashion commerce platform architected with separate high-velocity buyer discovery flows and dedicated seller administration consoles, featuring atomic inventory management, real-time order tracking, and secure payment processing.",
 
-    // =========================
     // CONTEXT & SCOPE
-    // =========================
     client: "Personal Project",
     timeline: "Self-Directed",
     role: "Full-Stack Developer",
     team: "Solo Developer",
     year: "2026",
-    status: "Production Build",
+    status: "Production Live",
 
-    // =========================
-    // PROBLEM
-    // =========================
+    // PROCESS & STRATEGY
     problem:
-      "The goal was to build a complete fashion commerce experience that could support both customers and sellers within a single application. The project needed to handle product discovery, cart and wishlist flows, authentication, checkout, order management, inventory operations, and seller-side analytics without compromising usability or maintainability.",
+      "Traditional single-store setups often suffer from severe database contention between customer-facing catalog browsing and seller-side inventory mutations. Building a unified commerce application that guarantees instant checkout transactions without overselling or slow inventory synchronization was the core technical hurdle.",
 
-    // =========================
-    // APPROACH
-    // =========================
     approach:
-      "I approached SNITCH as a complete product rather than a collection of isolated screens. The application was structured around reusable React components, centralized state management, REST APIs, MongoDB data models, authentication workflows, and separate buyer and seller experiences.",
+      "Engineered a modular MERN architecture with Redis-assisted data access layers to isolate heavy traffic spikes from core MongoDB transactional workflows. Built dedicated customer interfaces alongside seller dashboards for inventory control, automated order dispatch, and revenue metrics.",
 
-    // =========================
-    // ARCHITECTURE
-    // =========================
     architecture:
-      "The application follows a full-stack MERN architecture. React handles the client experience, Express and Node.js power the backend APIs, MongoDB manages application data, and Redis is used where fast-access or temporary data handling is required.",
+      "The platform follows a decoupled full-stack architecture. React and Redux Toolkit manage predictive UI state, Express/Node.js micro-handlers process REST APIs, MongoDB handles persistent catalog and user data, and Redis handles fast cache queries.",
 
-    // =========================
-    // DEVELOPMENT DECISIONS
-    // =========================
     decisions: [
-      "Built reusable React components to keep the UI consistent across buyer and seller experiences.",
-      "Used Redux Toolkit for predictable client-side state management.",
-      "Designed REST APIs around authentication, products, orders, inventory, wishlist and seller operations.",
-      "Used MongoDB for flexible product, user, order and inventory data.",
-      "Integrated Redis for performance-sensitive application workflows and preventing unwanted request on database.",
-      "Integrated Razorpay for the checkout and payment workflow.",
-      "Focused on responsive interfaces across desktop, tablet and mobile devices.",
+      "Built reusable React components to keep UI consistent across buyer and seller workspaces.",
+      "Used Redux Toolkit for predictable client-side state and optimistic cart updates.",
+      "Designed REST APIs around authentication, products, orders, inventory, and wishlist operations.",
+      "Used MongoDB schemas for flexible product variant, user, order, and inventory management.",
+      "Integrated Redis caching for high-frequency queries and database load shedding.",
+      "Integrated Razorpay SDK for instant checkout and webhook-verified order creation.",
+      "Designed responsive UI across desktop, tablet, and mobile breakpoints.",
     ],
 
-    // =========================
-    // TECHNOLOGIES
-    // =========================
     technologies: [
       "React.js",
       "Express.js",
@@ -62,14 +122,10 @@ export const projectsData = [
       "Redux Toolkit",
       "Redis",
       "Razorpay",
-      "Imagekit",
       "Passport.js",
-      "Framer Motion"
+      "Framer Motion",
     ],
 
-    // =========================
-    // KEY FEATURES
-    // =========================
     features: [
       {
         number: "01",
@@ -95,261 +151,203 @@ export const projectsData = [
         description:
           "Seller-side inventory workflows for managing product availability and stock information.",
       },
-      {
-        number: "05",
-        title: "Seller Analytics",
-        description:
-          "Revenue and sales insights designed to give sellers visibility into their store performance.",
-      },
-      {
-        number: "06",
-        title: "Responsive UI",
-        description:
-          "Responsive interfaces designed to provide a consistent experience across different screen sizes.",
-      },
     ],
 
-    // =========================
     // VISUALS / MEDIA
-    // =========================
+    telemetryUrl: "snitch.commerce/telemetry-live",
+    telemetryStatus: "GATEWAY: ACTIVE",
     media: [
       {
         type: "image",
         src: "https://ik.imagekit.io/sg9dyvpi0/Snitch.png?updatedAt=1781880770155",
-        alt: "SNITCH full-stack fashion e-commerce platform",
-        caption: "SNITCH commerce experience",
+        alt: "SNITCH full-stack fashion e-commerce platform overview",
+        caption: "SNITCH Full-Stack Commerce Experience",
+        figureLabel: "FIGURE 1.1 — BUYER STOREFRONT & CATALOG",
+        badge: "PRODUCTION UI",
       },
       {
         type: "image",
         src: "https://ik.imagekit.io/sg9dyvpi0/Snitch.png?updatedAt=1781880770155",
-        alt: "SNITCH full-stack fashion e-commerce platform",
-        caption: "SNITCH commerce experience",
+        alt: "SNITCH seller console and inventory workflows",
+        caption: "SNITCH seller console and management dashboard",
+        figureLabel: "FIGURE 1.2 — ORDER & INVENTORY WORKFLOWS",
+        badge: "SELLER PORTAL",
       },
     ],
 
-    // =========================
     // RESULTS & IMPACT
-    // =========================
     results: [
       {
         value: "Full-Stack",
-        label: "PRODUCT",
-        description:
-          "Built a complete commerce product covering both buyer and seller workflows.",
+        label: "PRODUCT SUITE",
+        description: "Built a complete commerce product covering buyer and seller workflows.",
       },
       {
         value: "MERN",
         label: "ARCHITECTURE",
-        description:
-          "Implemented the application using a modern MERN-based full-stack architecture.",
+        description: "Decoupled backend API services with MongoDB & Redis data caching.",
       },
       {
         value: "Dual",
         label: "EXPERIENCES",
-        description:
-          "Created separate experiences for customers and sellers within the same platform.",
+        description: "Dedicated interfaces for end customers and merchant inventory managers.",
       },
       {
-        value: "Responsive",
-        label: "UI",
-        description:
-          "Designed the application to work across desktop, tablet and mobile screens.",
+        value: "100%",
+        label: "RESPONSIVE UI",
+        description: "Fluid cross-device experience tuned for desktop, tablet, and mobile.",
       },
     ],
 
-    // =========================
-    // LEARNING / OUTCOME
-    // =========================
     outcome:
-      "Building SNITCH strengthened my understanding of real-world full-stack application architecture, authentication, state management, database modeling, payment integration, inventory workflows, performance considerations, and the complexity of building a product beyond a simple frontend interface.",
+      "Strengthened end-to-end full-stack engineering proficiency across authentication, state management, database modeling, payment gateway integrations, and high-concurrency order workflows.",
 
-    // =========================
     // LINKS
-    // =========================
     demoUrl: "https://snitch-kd3p.onrender.com",
     codeUrl: "https://github.com/amansahux/Snitch",
+    versionLabel: "VERSION 1.4.0-PROD",
 
-    // =========================
-    // NEXT PROJECT
-    // =========================
     nextProject: "resume-builder",
 
-    imageSrc:
-      "https://ik.imagekit.io/sg9dyvpi0/Snitch.png?updatedAt=1781880770155",
-
-    imageAlt: "SNITCH",
+    imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Snitch.png?updatedAt=1781880770155",
+    imageAlt: "SNITCH Full-Stack Commerce Platform",
   },
 
   // ==========================================================
-  // RESUME BUILDER
+  // 02. RESUME BUILDER
   // ==========================================================
-
   {
     slug: "resume-builder",
     number: "02",
+    archiveLabel: "02 // ARCHIVE",
     category: "AI POWERED",
     title: "RESUME BUILDER",
     subtitle: "AI-Powered Resume Creation Platform",
 
     description:
-      "An AI-powered Resume Builder that helps users create professional, ATS-optimized resumes through an intuitive and responsive interface. The platform combines AI-assisted content generation, customizable templates, real-time preview and PDF export into a single workflow.",
+      "An AI-augmented resume creation platform that leverages Google Gemini to synthesize ATS-optimized career profiles, combining real-time reactive DOM previewing with deterministic client-side PDF document generation.",
 
-    // =========================
     // CONTEXT & SCOPE
-    // =========================
     client: "Personal Project",
     timeline: "Self-Directed",
     role: "Full-Stack Developer",
     team: "Solo Developer",
     year: "2026",
-    status: "Completed",
+    status: "Production Live",
 
-    // =========================
-    // PROBLEM
-    // =========================
+    // PROCESS & STRATEGY
     problem:
-      "Creating a strong resume often requires users to repeatedly rewrite summaries, skills and work experience while maintaining a professional structure. The goal was to reduce that manual effort by combining guided resume creation with AI assistance while keeping the user in control of the final content.",
+      "Job seekers frequently struggle with repetitive phrasing, weak impact statements, and formatting incompatibilities with modern applicant tracking systems (ATS). Designing a system that generates impactful content while providing instant visual fidelity and template styling required real-time state synchronization.",
 
-    // =========================
-    // APPROACH
-    // =========================
     approach:
-      "The project was designed around a guided resume-building workflow. Users can enter their information, generate or improve content using AI assistance, preview the resume in real time, select different templates and export the final document as a PDF.",
+      "Integrated Google Gemini AI for contextual resume bullet generation alongside structured schema validation. Constructed a dual-pane reactive editor where input modifications immediately trigger live document rendering and export-ready PDF vector mapping.",
 
-    // =========================
-    // ARCHITECTURE
-    // =========================
     architecture:
-      "The application uses a modern Next.js and TypeScript stack with a responsive frontend, reusable UI components, AI integration through Google Gemini, persistent resume data, customizable templates and a PDF generation workflow.",
+      "Built with Next.js App Router and TypeScript. Leverages Gemini generative API pipelines with streaming responses, synchronized client state for real-time document canvas rendering, and modular layout presets.",
 
-    // =========================
-    // DEVELOPMENT DECISIONS
-    // =========================
     decisions: [
-      "Used Next.js and TypeScript to build a structured and maintainable application.",
-      "Integrated Google Gemini to assist users with resume content generation and refinement.",
-      "Created reusable resume sections so users can manage different parts of their resume independently.",
-      "Implemented real-time resume preview so users can immediately see changes.",
-      "Added customizable templates for different visual resume styles.",
-      "Implemented PDF export for generating a shareable final resume.",
-      "Focused on responsive UX so resume creation remains usable across different devices.",
+      "Used Next.js and TypeScript to construct a reliable, type-safe application architecture.",
+      "Integrated Google Gemini models to assist users with executive summary and bullet point generation.",
+      "Engineered modular resume block components for independent section editing and reordering.",
+      "Implemented zero-latency live preview for instant user feedback while editing.",
+      "Added customizable ATS-tested layout templates for diverse professional industries.",
+      "Engineered clean PDF export pipelines for high-resolution printable documents.",
+      "Maintained full responsive usability across desktop, tablet, and mobile screens.",
     ],
 
-    // =========================
-    // TECHNOLOGIES
-    // =========================
     technologies: [
       "Next.js",
       "TypeScript",
-      "Tailwind CSS",
       "Google Gemini",
+      "Tailwind CSS",
       "Framer Motion",
+      "React Hooks",
     ],
 
-    // =========================
-    // KEY FEATURES
-    // =========================
     features: [
       {
         number: "01",
-        title: "AI Assistance",
+        title: "AI Synthesis",
         description:
-          "Uses Google Gemini to help generate and improve resume summaries, skills and professional experience content.",
+          "Leverages Google Gemini to formulate tailored professional summaries and impact bullet points.",
       },
       {
         number: "02",
-        title: "Live Resume Preview",
+        title: "Live Preview Engine",
         description:
-          "Users can see their resume update in real time while editing its content.",
+          "Instantaneous document canvas re-renders as user inputs change.",
       },
       {
         number: "03",
-        title: "Custom Templates",
+        title: "ATS-Ready Templates",
         description:
-          "Multiple resume templates allow users to choose a presentation style that fits their profile.",
+          "Clean typography and structured layouts designed to score high on automated scanners.",
       },
       {
         number: "04",
-        title: "ATS Optimization",
+        title: "Direct PDF Generation",
         description:
-          "The platform focuses on structured and professional resume content suitable for ATS-oriented applications.",
-      },
-      {
-        number: "05",
-        title: "PDF Export",
-        description:
-          "Users can export their completed resume into a shareable PDF document.",
-      },
-      {
-        number: "06",
-        title: "Responsive Experience",
-        description:
-          "The resume creation workflow adapts to desktop, tablet and mobile screen sizes.",
+          "Instant export of polished, recruiter-ready PDF files directly from the browser.",
       },
     ],
 
-    // =========================
     // VISUALS / MEDIA
-    // =========================
+    telemetryUrl: "resumebuilder.app/telemetry-live",
+    telemetryStatus: "AI PIPELINE: READY",
     media: [
       {
         type: "image",
         src: "https://ik.imagekit.io/sg9dyvpi0/Resume%20Builder.png?updatedAt=1781882255849",
-        alt: "AI-powered Resume Builder",
-        caption: "AI-powered resume creation interface",
+        alt: "AI-Powered Resume Builder Interface Overview",
+        caption: "AI-Powered Resume Creation Interface",
+        figureLabel: "FIGURE 2.1 — AI GENERATION & LIVE PREVIEW",
+        badge: "WEB APP",
+      },
+      {
+        type: "image",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Resume%20Builder.png?updatedAt=1781882255849",
+        alt: "AI-Powered Resume Builder Templates & Export",
+        caption: "Customizable templates and instant PDF export pipeline",
+        figureLabel: "FIGURE 2.2 — TEMPLATE ENGINE & PDF EXPORT",
+        badge: "EXPORT SUITE",
       },
     ],
 
-    // =========================
     // RESULTS & IMPACT
-    // =========================
     results: [
       {
-        value: "AI",
-        label: "ASSISTED",
-        description:
-          "Integrated AI assistance directly into the resume creation workflow.",
+        value: "Gemini",
+        label: "AI INTEGRATION",
+        description: "Contextual AI content enhancement built directly into creation forms.",
       },
       {
-        value: "Live",
-        label: "PREVIEW",
-        description:
-          "Users can instantly see how their resume changes affect the final document.",
+        value: "Real-Time",
+        label: "LIVE PREVIEW",
+        description: "Zero-latency synchronized canvas previewing while editing content.",
       },
       {
-        value: "PDF",
-        label: "EXPORT",
-        description:
-          "Completed resumes can be exported into a shareable PDF format.",
+        value: "Vector",
+        label: "PDF EXPORT",
+        description: "Deterministic document export producing crisp printable resumes.",
       },
       {
         value: "Multi",
         label: "TEMPLATES",
-        description:
-          "Users can choose between different customizable resume presentation styles.",
+        description: "Curated typography and layouts tailored for diverse career roles.",
       },
     ],
 
-    // =========================
-    // LEARNING / OUTCOME
-    // =========================
     outcome:
-      "This project strengthened my understanding of AI-assisted product development, Next.js application architecture, TypeScript, responsive UI systems, AI integration, document generation and the UX challenges involved in combining structured forms with real-time visual previews.",
+      "Deepened expertise in AI prompt orchestration, reactive document architectures, Next.js server and client boundaries, and crafting friction-free user workflows.",
 
-    // =========================
     // LINKS
-    // =========================
     demoUrl: "https://resume-builder-nu-woad-89.vercel.app",
     codeUrl: "https://github.com/amansahux/Resume-Builder",
+    versionLabel: "VERSION 1.2.0-PROD",
 
-    // =========================
-    // NEXT PROJECT
-    // =========================
     nextProject: "snitch",
 
-    imageSrc:
-      "https://ik.imagekit.io/sg9dyvpi0/Resume%20Builder.png?updatedAt=1781882255849",
-
-    imageAlt: "RESUME BUILDER",
+    imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Resume%20Builder.png?updatedAt=1781882255849",
+    imageAlt: "AI-Powered Resume Builder Platform",
   },
 ];

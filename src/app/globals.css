@@ -189,6 +189,19 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(232, 232, 232, 0.4);
   }
+  .hairline-border {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .chrome-glow {
+    box-shadow: 0 0 28px rgba(200, 200, 200, 0.06);
+  }
+  .chrome-glow-btn:hover {
+    box-shadow: 0 0 25px rgba(232, 232, 232, 0.25);
+  }
+  .metallic-bevel {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.0) 100%);
+  }
 }
 
 @keyframes float {
