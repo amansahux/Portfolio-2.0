@@ -317,7 +317,7 @@ export const projectsData: ProjectItem[] = [
     media: [
       {
         type: "image",
-        src: "https://ik.imagekit.io/sg9dyvpi0/Snitch.png?updatedAt=1781880770155",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-01%20233641.png",
         alt: "SNITCH full-stack fashion e-commerce platform overview",
         caption: "SNITCH Full-Stack Commerce Experience",
         figureLabel: "FIGURE 1.1 — BUYER STOREFRONT & CATALOG",
@@ -325,7 +325,15 @@ export const projectsData: ProjectItem[] = [
       },
       {
         type: "image",
-        src: "https://ik.imagekit.io/sg9dyvpi0/Snitch.png?updatedAt=1781880770155",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-01%20233834.png",
+        alt: "SNITCH full-stack fashion e-commerce platform overview",
+        caption: "SNITCH Full-Stack Commerce Experience",
+        figureLabel: "FIGURE 1.1 — BUYER STOREFRONT & CATALOG",
+        badge: "PRODUCTION UI",
+      },
+      {
+        type: "image",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-01%20233717.png",
         alt: "SNITCH seller console and inventory workflows",
         caption: "SNITCH seller console and management dashboard",
         figureLabel: "FIGURE 1.2 — ORDER & INVENTORY WORKFLOWS",
@@ -455,7 +463,7 @@ export const projectsData: ProjectItem[] = [
     media: [
       {
         type: "image",
-        src: "https://ik.imagekit.io/sg9dyvpi0/Resume%20Builder.png?updatedAt=1781882255849",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-02%20000240.png",
         alt: "AI-Powered Resume Builder Interface Overview",
         caption: "AI-Powered Resume Creation Interface",
         figureLabel: "FIGURE 2.1 — AI GENERATION & LIVE PREVIEW",
@@ -463,7 +471,15 @@ export const projectsData: ProjectItem[] = [
       },
       {
         type: "image",
-        src: "https://ik.imagekit.io/sg9dyvpi0/Resume%20Builder.png?updatedAt=1781882255849",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-02%20000327.png",
+        alt: "AI-Powered Resume Builder Templates & Export",
+        caption: "Customizable templates and instant PDF export pipeline",
+        figureLabel: "FIGURE 2.2 — TEMPLATE ENGINE & PDF EXPORT",
+        badge: "EXPORT SUITE",
+      },
+      {
+        type: "image",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-02%20000250.png",
         alt: "AI-Powered Resume Builder Templates & Export",
         caption: "Customizable templates and instant PDF export pipeline",
         figureLabel: "FIGURE 2.2 — TEMPLATE ENGINE & PDF EXPORT",
