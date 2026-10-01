@@ -309,10 +309,10 @@ export default function ProjectDetailView({
               </span>
             </div>
 
-            <div className="relative w-full aspect-[16/9] md:aspect-[21/9] bg-surface-container overflow-hidden">
+            <div className="relative w-full aspect-[16/9] md:aspect-[21/9] bg-surface-container overflow-hidden rounded-b-lg">
               <Image
-                src={project.imageSrc || project.media[0]?.src}
-                alt={project.imageAlt || project.title}
+                src={project.media?.[0]?.src || project.imageSrc}
+                alt={project.media?.[0]?.alt || project.imageAlt || project.title}
                 fill
                 priority
                 className="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-700 ease-out"
@@ -320,28 +320,34 @@ export default function ProjectDetailView({
             </div>
           </div>
 
-          {/* Two Balanced Supporting Screenshots (if available) */}
-          {project.media && project.media.length > 1 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {project.media.slice(0, 2).map((item, idx) => (
+          {/* Two Balanced Supporting Screenshots — media[1] and media[2] */}
+          {project.media && project.media.length > 2 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+              {project.media.slice(1, 3).map((item, idx) => (
                 <div
                   key={idx}
-                  className="rounded-lg overflow-hidden border hairline-border bg-surface-container-low flex flex-col"
+                  className="rounded-lg overflow-hidden border hairline-border bg-surface-container-low flex flex-col group"
                 >
-                  <div className="p-3 border-b hairline-border flex items-center justify-between font-label-caps text-label-caps text-outline">
-                    <span>
-                      {item.figureLabel || `FIGURE 1.${idx + 1} — ${item.caption?.toUpperCase() || "INTERFACE CAPTURE"}`}
+                  <div className="px-3 py-2.5 border-b hairline-border flex items-center justify-between font-label-caps text-label-caps text-outline">
+                    <span className="truncate pr-2">
+                      {item.figureLabel || `FIGURE 2.${idx + 2} — ${item.caption?.toUpperCase() || "INTERFACE CAPTURE"}`}
                     </span>
-                    <span>{item.badge || "PRODUCTION"}</span>
+                    <span className="shrink-0">{item.badge || "PRODUCTION"}</span>
                   </div>
                   <div className="aspect-[16/10] bg-surface-container-lowest relative overflow-hidden">
                     <Image
                       src={item.src}
                       alt={item.alt}
                       fill
-                      className="w-full h-full object-cover object-center hover:scale-[1.03] transition-transform duration-500"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500 ease-out"
                     />
                   </div>
+                  {item.caption && (
+                    <p className="px-3 py-2 font-label-caps text-label-caps text-outline text-[10px] border-t hairline-border">
+                      {item.caption}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>

@@ -76,10 +76,10 @@ export const projectsData: ProjectItem[] = [
   // ==========================================================
   {
     slug: "recoz-feedback",
-    number: "02",
-    archiveLabel: "02 // ARCHIVE",
+    number: "01",
+    archiveLabel: "01 // ARCHIVE",
     category: "CUSTOMER FEEDBACK PLATFORM",
-    title: "RecozFeedback",
+    title: "Recoz Feedback",
     subtitle: "Customer Feedback & Experience Platform",
 
     description:
@@ -101,12 +101,12 @@ export const projectsData: ProjectItem[] = [
       "Engineered a modular MERN application where businesses can create dynamic feedback surveys, publish them through shareable links, QR codes, and website widgets, collect responses without requiring customer accounts, and manage resulting feedback through metrics, text analysis, status tracking, and follow-up workflows.",
 
     architecture:
-      "The platform follows a layered MERN architecture with React and React Router powering the client application, TanStack Query managing server state, Redux Toolkit handling lightweight client state, and an Express/Node.js REST API organized into routes, controllers, services, and Mongoose data models backed by MongoDB. Authentication uses JWT stored in a secure HTTP-only cookie.",
+      "The platform follows a 4-layered MERN architecture with React and React Router powering the client application, TanStack Query managing server state, Redux Toolkit handling lightweight client state, and an Express/Node.js REST API organized into routes, controllers, services, and Mongoose data models backed by MongoDB. Authentication uses an access-and-refresh-token strategy with the refresh token stored in a secure HTTP-only cookie.",
 
     decisions: [
       "Designed a dynamic survey system where questions are embedded within surveys and each question has its own identifier for reliable answer mapping.",
       "Used TanStack Query for server-state fetching, caching, and mutations while keeping Redux Toolkit limited to client-side global state.",
-      "Implemented JWT authentication using HTTP-only cookies with a seven-day expiration instead of exposing tokens to client-side storage.",
+      "Implemented access-and-refresh-token authentication where a short-lived access token is sent in the response body and a long-lived refresh token is stored in a secure HTTP-only cookie, enabling silent token rotation without exposing credentials to client-side storage.",
       "Designed public survey routes that allow external customers to submit feedback without creating Recoz accounts.",
       "Built organization-level data isolation so authenticated business users only access their own surveys, customers, responses, and analytics.",
       "Implemented NPS, CSAT, and CES calculations directly from collected response data.",
@@ -121,17 +121,12 @@ export const projectsData: ProjectItem[] = [
       "Node.js",
       "Express.js",
       "MongoDB",
-      "Mongoose",
       "JavaScript",
       "Tailwind CSS",
       "TanStack Query",
       "Redux Toolkit",
       "React Router",
-      "JWT",
-      "bcrypt",
-      "Recharts",
-      "Lucide React",
-      "Zod",
+      "Recharts"
     ],
 
     features: [
@@ -139,7 +134,7 @@ export const projectsData: ProjectItem[] = [
         number: "01",
         title: "Multi-Channel Feedback",
         description:
-          "Create dynamic surveys and distribute them through public links, QR codes, and embeddable website widgets while using a single customer-facing survey experience.",
+          "Create dynamic surveys and distribute them through public links, QR codes, and embeddable website widgets.",
       },
       {
         number: "02",
@@ -167,7 +162,7 @@ export const projectsData: ProjectItem[] = [
     media: [
       {
         type: "image",
-        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-09-24%20124754.png",
+        src: "https://ik.imagekit.io/sg9dyvpi0/image_vqaRuvLok.png?updatedAt=1790876800879",
         alt: "Recoz Feedback customer feedback dashboard",
         caption: "Recoz Feedback Analytics & Customer Experience Dashboard",
         figureLabel: "FIGURE 2.1 — ANALYTICS & EXPERIENCE OVERVIEW",
@@ -175,7 +170,15 @@ export const projectsData: ProjectItem[] = [
       },
       {
         type: "image",
-        src: "https://ik.imagekit.io/sg9dyvpi0/image.png",
+        src: "https://ik.imagekit.io/sg9dyvpi0/image_VjYPxhRIm.png",
+        alt: "Recoz Feedback survey builder and feedback workflow",
+        caption: "Recoz Feedback Survey Builder & Response Management",
+        figureLabel: "FIGURE 2.2 — SURVEY & FEEDBACK WORKFLOWS",
+        badge: "MVP SYSTEM",
+      },
+      {
+        type: "image",
+        src: "https://ik.imagekit.io/sg9dyvpi0/image_Ofoe89Rxo.png",
         alt: "Recoz Feedback survey builder and feedback workflow",
         caption: "Recoz Feedback Survey Builder & Response Management",
         figureLabel: "FIGURE 2.2 — SURVEY & FEEDBACK WORKFLOWS",
@@ -215,13 +218,13 @@ export const projectsData: ProjectItem[] = [
       "Strengthened full-stack product engineering skills across authentication, REST API architecture, dynamic survey systems, MongoDB data modeling, customer feedback analytics, responsive UX, and organization-scoped application design.",
 
     // LINKS
-    demoUrl: "https://ricoz-feedback-production.up.railway.app/",
+    demoUrl: "https://recozfeedback.up.railway.app/",
     codeUrl: "https://github.com/amansahux/Ricoz-Feedback",
     versionLabel: "VERSION 1.0.0-MVP",
 
     nextProject: "snitch",
 
-    imageSrc: "https://ik.imagekit.io/sg9dyvpi0/ricoz-feedback-production.up.railway.app-analytics.png",
+    imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Recoz%20Feedback%20Feature%20Grid.png",
     imageAlt: "Recoz Feedback Customer Feedback & Experience Platform",
   },
 
@@ -231,8 +234,8 @@ export const projectsData: ProjectItem[] = [
 
   {
     slug: "snitch",
-    number: "01",
-    archiveLabel: "01 // ARCHIVE",
+    number: "02",
+    archiveLabel: "02 // ARCHIVE",
     category: "E-COMMERCE SHOP",
     title: "SNITCH",
     subtitle: "Full-Stack Fashion Commerce Platform",
@@ -364,7 +367,7 @@ export const projectsData: ProjectItem[] = [
 
     nextProject: "resume-builder",
 
-    imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Snitch.png?updatedAt=1781880770155",
+    imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Snitch%20Mast.png",
     imageAlt: "SNITCH Full-Stack Commerce Platform",
   },
 
