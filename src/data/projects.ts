@@ -72,8 +72,163 @@ export interface ProjectItem {
 
 export const projectsData: ProjectItem[] = [
   // ==========================================================
-  // 01. SNITCH
+  // 01. Recoz Feedback
   // ==========================================================
+  {
+    slug: "recoz-feedback",
+    number: "02",
+    archiveLabel: "02 // ARCHIVE",
+    category: "CUSTOMER FEEDBACK PLATFORM",
+    title: "RecozFeedback",
+    subtitle: "Customer Feedback & Experience Platform",
+
+    description:
+      "A customer feedback platform built to help businesses collect responses through public surveys, measure NPS, CSAT, and CES, analyze customer sentiment and recurring topics, and manage feedback through a simple closed-loop workflow.",
+
+    // CONTEXT & SCOPE
+    client: "Personal Project",
+    timeline: "Self-Directed",
+    role: "Full-Stack Developer",
+    team: "Solo Developer",
+    year: "2026",
+    status: "MVP / Production Ready",
+
+    // PROCESS & STRATEGY
+    problem:
+      "Customer feedback is often scattered across forms, messages, and disconnected workflows, making it difficult for businesses to understand customer experience and act on recurring issues. The core challenge was creating one streamlined system that could collect feedback, measure experience, surface meaningful patterns, and track issues through resolution.",
+
+    approach:
+      "Engineered a modular MERN application where businesses can create dynamic feedback surveys, publish them through shareable links, QR codes, and website widgets, collect responses without requiring customer accounts, and manage resulting feedback through metrics, text analysis, status tracking, and follow-up workflows.",
+
+    architecture:
+      "The platform follows a layered MERN architecture with React and React Router powering the client application, TanStack Query managing server state, Redux Toolkit handling lightweight client state, and an Express/Node.js REST API organized into routes, controllers, services, and Mongoose data models backed by MongoDB. Authentication uses JWT stored in a secure HTTP-only cookie.",
+
+    decisions: [
+      "Designed a dynamic survey system where questions are embedded within surveys and each question has its own identifier for reliable answer mapping.",
+      "Used TanStack Query for server-state fetching, caching, and mutations while keeping Redux Toolkit limited to client-side global state.",
+      "Implemented JWT authentication using HTTP-only cookies with a seven-day expiration instead of exposing tokens to client-side storage.",
+      "Designed public survey routes that allow external customers to submit feedback without creating Recoz accounts.",
+      "Built organization-level data isolation so authenticated business users only access their own surveys, customers, responses, and analytics.",
+      "Implemented NPS, CSAT, and CES calculations directly from collected response data.",
+      "Built a lightweight response-analysis layer for sentiment and topic detection without requiring paid external AI services.",
+      "Added QR-code and website-widget distribution methods that reuse the same dynamic public survey experience.",
+      "Structured feedback around a simple open → in-progress → resolved lifecycle with internal follow-up notes.",
+      "Designed responsive customer-facing and business-facing interfaces using reusable React components.",
+    ],
+
+    technologies: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "JavaScript",
+      "Tailwind CSS",
+      "TanStack Query",
+      "Redux Toolkit",
+      "React Router",
+      "JWT",
+      "bcrypt",
+      "Recharts",
+      "Lucide React",
+      "Zod",
+    ],
+
+    features: [
+      {
+        number: "01",
+        title: "Multi-Channel Feedback",
+        description:
+          "Create dynamic surveys and distribute them through public links, QR codes, and embeddable website widgets while using a single customer-facing survey experience.",
+      },
+      {
+        number: "02",
+        title: "Experience Measurement",
+        description:
+          "Collect and calculate NPS, CSAT, and CES scores directly from customer responses with dedicated metrics and analytics views.",
+      },
+      {
+        number: "03",
+        title: "Response Analysis",
+        description:
+          "Analyze submitted text responses using sentiment and topic detection to surface recurring customer concerns and experience patterns.",
+      },
+      {
+        number: "04",
+        title: "Closed-Loop Feedback",
+        description:
+          "Review individual responses, track their status, add internal follow-up notes, and move feedback from open to in-progress and finally resolved.",
+      },
+    ],
+
+    // VISUALS / MEDIA
+    telemetryUrl: "",
+    telemetryStatus: "",
+    media: [
+      {
+        type: "image",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-09-24%20124754.png",
+        alt: "Recoz Feedback customer feedback dashboard",
+        caption: "Recoz Feedback Analytics & Customer Experience Dashboard",
+        figureLabel: "FIGURE 2.1 — ANALYTICS & EXPERIENCE OVERVIEW",
+        badge: "PRODUCT UI",
+      },
+      {
+        type: "image",
+        src: "https://ik.imagekit.io/sg9dyvpi0/image.png",
+        alt: "Recoz Feedback survey builder and feedback workflow",
+        caption: "Recoz Feedback Survey Builder & Response Management",
+        figureLabel: "FIGURE 2.2 — SURVEY & FEEDBACK WORKFLOWS",
+        badge: "MVP SYSTEM",
+      },
+    ],
+
+    // RESULTS & IMPACT
+    results: [
+      {
+        value: "MERN",
+        label: "FULL-STACK PRODUCT",
+        description:
+          "Built a complete feedback platform spanning authentication, survey creation, response collection, analytics, and feedback management.",
+      },
+      {
+        value: "3",
+        label: "CORE CX METRICS",
+        description:
+          "Implemented NPS, CSAT, and CES measurement directly from collected customer responses.",
+      },
+      {
+        value: "3",
+        label: "FEEDBACK CHANNELS",
+        description:
+          "Enabled customer response collection through public links, QR codes, and website widgets.",
+      },
+      {
+        value: "100%",
+        label: "RESPONSIVE EXPERIENCE",
+        description:
+          "Designed responsive business dashboards and mobile-first customer feedback experiences across modern breakpoints.",
+      },
+    ],
+
+    outcome:
+      "Strengthened full-stack product engineering skills across authentication, REST API architecture, dynamic survey systems, MongoDB data modeling, customer feedback analytics, responsive UX, and organization-scoped application design.",
+
+    // LINKS
+    demoUrl: "https://ricoz-feedback-production.up.railway.app/",
+    codeUrl: "https://github.com/amansahux/Ricoz-Feedback",
+    versionLabel: "VERSION 1.0.0-MVP",
+
+    nextProject: "snitch",
+
+    imageSrc: "https://ik.imagekit.io/sg9dyvpi0/ricoz-feedback-production.up.railway.app-analytics.png",
+    imageAlt: "Recoz Feedback Customer Feedback & Experience Platform",
+  },
+
+  // ==========================================================
+  // 02. SNITCH
+  // ==========================================================
+
   {
     slug: "snitch",
     number: "01",
@@ -214,7 +369,7 @@ export const projectsData: ProjectItem[] = [
   },
 
   // ==========================================================
-  // 02. RESUME BUILDER
+  // 03. RESUME BUILDER
   // ==========================================================
   {
     slug: "resume-builder",
@@ -350,4 +505,5 @@ export const projectsData: ProjectItem[] = [
     imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Resume%20Builder.png?updatedAt=1781882255849",
     imageAlt: "AI-Powered Resume Builder Platform",
   },
+
 ];
