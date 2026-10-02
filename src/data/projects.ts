@@ -384,8 +384,8 @@ export const projectsData: ProjectItem[] = [
   // ==========================================================
   {
     slug: "resume-builder",
-    number: "02",
-    archiveLabel: "02 // ARCHIVE",
+    number: "03",
+    archiveLabel: "03 // ARCHIVE",
     category: "AI POWERED",
     title: "RESUME BUILDER",
     subtitle: "AI-Powered Resume Creation Platform",
@@ -524,5 +524,155 @@ export const projectsData: ProjectItem[] = [
     imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Resume%20Builder.png?updatedAt=1781882255849",
     imageAlt: "AI-Powered Resume Builder Platform",
   },
+  {
+  slug: "team-sync",
+  number: "04",
+  archiveLabel: "04 // ARCHIVE",
+  category: "EMPLOYEE COLLABORATION",
+  title: "TEAM SYNC",
+  subtitle: "Employee Management & Team Collaboration Platform",
+
+  description:
+    "A full-stack employee management and collaboration platform with role-based access, task assignment, department management, real-time communication, file sharing, and personal workspace controls.",
+
+  // CONTEXT & SCOPE
+  client: "Personal Project",
+  timeline: "Self-Directed",
+  role: "Full-Stack Developer",
+  team: "Solo Developer",
+  year: "2026",
+  status: "Production Ready",
+
+  // PROCESS & STRATEGY
+  problem:
+    "Managing employees, team communication, assigned work, and department activities across separate tools creates unnecessary complexity. The goal was to build one application connecting people, communication, and daily tasks through role-specific workflows.",
+
+  approach:
+    "Designed separate Admin and Employee workflows with backend-enforced role authorization. Combined REST APIs for management operations with Socket.IO for real-time communication, while using TanStack Query and Redux to keep application and server state organized.",
+
+  architecture:
+    "Built with React and Tailwind CSS on the frontend and Node.js, Express, MongoDB, and Mongoose on the backend. Uses JWT cookie authentication, layered controllers and services, Socket.IO channels, Multer-based uploads, and feature-based frontend architecture.",
+
+  decisions: [
+    "Used JWT authentication with HTTP cookies for protected user sessions.",
+    "Implemented backend role-based authorization for separate Admin and Employee permissions.",
+    "Structured the frontend into feature modules with dedicated APIs, hooks, state, and UI layers.",
+    "Used TanStack Query for server state and API cache synchronization.",
+    "Implemented Socket.IO for real-time team communication and channel-based messaging.",
+    "Separated file uploads from WebSocket messages to keep realtime communication lightweight.",
+    "Added resource-level authorization so employees can only update their assigned tasks.",
+  ],
+
+  technologies: [
+    "React",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "Mongoose",
+    "Socket.IO",
+    "TanStack Query",
+    "Redux",
+    "JWT",
+    "Tailwind CSS",
+  ],
+
+  features: [
+    {
+      number: "01",
+      title: "Role-Based Management",
+      description:
+        "Separate Admin and Employee workflows with backend-enforced authentication and authorization.",
+    },
+    {
+      number: "02",
+      title: "Task Management",
+      description:
+        "Admins can create and assign tasks while employees track and update their assigned work.",
+    },
+    {
+      number: "03",
+      title: "Real-Time Team Chat",
+      description:
+        "Socket.IO-powered channels support realtime messaging, attachments, and message management.",
+    },
+    {
+      number: "04",
+      title: "Employee & Department Management",
+      description:
+        "Manage employees, departments, account status, profiles, avatars, and organization structure.",
+    },
+  ],
+
+  // VISUALS / MEDIA
+  telemetryUrl: "teamsync.app/telemetry-live",
+  telemetryStatus: "SYSTEM: OPERATIONAL",
+  media: [
+    {
+      type: "image",
+      src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-02%20233653.png",
+      alt: "TEAM SYNC Employee Management Interface",
+      caption: "Employee management and organization workspace",
+      figureLabel: "FIGURE 4.1 — EMPLOYEE MANAGEMENT",
+      badge: "ADMIN SUITE",
+    },
+    {
+      type: "image",
+      src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-02%20233609.png",
+      alt: "TEAM SYNC Real-Time Chat Interface",
+      caption: "Real-time team communication and channel-based chat",
+      figureLabel: "FIGURE 4.2 — REAL-TIME COMMUNICATION",
+      badge: "CHAT SYSTEM",
+    },
+    {
+      type: "image",
+      src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-02%20233629.png",
+      alt: "TEAM SYNC Task Management Interface",
+      caption: "Task assignment and employee workflow management",
+      figureLabel: "FIGURE 4.3 — TASK MANAGEMENT",
+      badge: "WORKFLOW",
+    },
+  ],
+
+  // RESULTS & IMPACT
+  results: [
+    {
+      value: "RBAC",
+      label: "ACCESS CONTROL",
+      description:
+        "Separate Admin and Employee permissions enforced at the backend level.",
+    },
+    {
+      value: "Real-Time",
+      label: "TEAM CHAT",
+      description:
+        "Socket.IO channels provide persistent and realtime team communication.",
+    },
+    {
+      value: "REST",
+      label: "API ARCHITECTURE",
+      description:
+        "Structured REST APIs handle employees, departments, tasks, authentication, and chat operations.",
+    },
+    {
+      value: "MERN",
+      label: "FULL-STACK",
+      description:
+        "Complete React, Node.js, Express, MongoDB application with modern state management.",
+    },
+  ],
+
+  outcome:
+    "Deepened practical experience in full-stack architecture, role-based authorization, real-time systems, task workflows, server-state management, and building feature-based React applications.",
+
+  // LINKS
+  demoUrl: "https://team-sync-live.up.railway.app",
+  codeUrl: "https://github.com/amansahux/TEAM-SYNC",
+  versionLabel: "VERSION 1.0.0-PROD",
+
+  nextProject: "recoz-feedback",
+
+  imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Team%20Sync%20Enterprise%20Workspace%20Showcase.png",
+  imageAlt: "TEAM SYNC Employee Management and Collaboration Platform",
+},
 
 ];
