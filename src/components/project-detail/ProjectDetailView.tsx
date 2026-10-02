@@ -38,8 +38,14 @@ export default function ProjectDetailView({
 
   // Initialize Lenis smooth scroll and GSAP reveals
   useEffect(() => {
-    // Reset scroll to top immediately on component mount / slug change
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
 
     const lenis = new Lenis({
       duration: 1.2,
@@ -51,8 +57,12 @@ export default function ProjectDetailView({
 
     (window as any).lenis = lenis;
 
-    // Force Lenis to start at top 0 immediately
-    lenis.scrollTo(0, { immediate: true });
+    // Force Lenis and browser scroll to 0 immediately
+    lenis.scrollTo(0, { immediate: true, force: true });
+    requestAnimationFrame(() => {
+      lenis.scrollTo(0, { immediate: true, force: true });
+      window.scrollTo(0, 0);
+    });
 
     function raf(time: number) {
       lenis.raf(time);

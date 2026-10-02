@@ -212,6 +212,5 @@
 body {
   background-color: var(--color-background);
   color: var(--color-on-background);
-  scroll-behavior: smooth;
   overflow-x: hidden;
 }

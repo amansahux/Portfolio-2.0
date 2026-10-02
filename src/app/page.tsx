@@ -22,10 +22,24 @@ import Footer from "@/components/Footer";
 let hasIntroPlayed = false;
 
 export default function Home() {
-  const [progress, setProgress] = useState(0);
-  const [isReady, setIsReady] = useState(false);
-  const [showLoader, setShowLoader] = useState(true);
+  const [progress, setProgress] = useState(hasIntroPlayed ? 100 : 0);
+  const [isReady, setIsReady] = useState(hasIntroPlayed);
+  const [showLoader, setShowLoader] = useState(!hasIntroPlayed);
   const loaderRef = useRef<HTMLDivElement>(null);
+
+  // Force scroll to top on page reload/fresh visit
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      if (!hasIntroPlayed) {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+    }
+  }, []);
 
   function handleLoading() {
     hasIntroPlayed = true;
@@ -48,12 +62,12 @@ export default function Home() {
   }, [isReady]);
 
   useEffect(() => {
-    // If returning from another page in the same session without refresh, skip the loader
+    // If returning from another page via client-side navigation, skip loader
     if (hasIntroPlayed) {
       setShowLoader(false);
       setIsReady(true);
     } else {
-      // Simulate loading progress on initial load or full refresh
+      // Simulate loading progress on initial load or full reload on `/`
       const interval = setInterval(() => {
         setProgress((prev) => {
           if (prev >= 100) {
