@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUpRight, Code2 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,7 +22,7 @@ export interface ProjectProps {
   index: number;
 }
 
-export default function ProjectCard({
+function ProjectCardComponent({
   slug,
   category,
   title,
@@ -33,8 +31,6 @@ export default function ProjectCard({
   technologies,
   imageSrc,
   imageAlt,
-  demoUrl = "#",
-  codeUrl = "#",
   index,
 }: ProjectProps) {
   const displayTags = tags || technologies || [];
@@ -83,6 +79,7 @@ export default function ProjectCard({
               alt={imageAlt}
               width={800}
               height={600}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 800px"
               className="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700 ease-out cursor-pointer"
             />
           </Link>
@@ -92,6 +89,7 @@ export default function ProjectCard({
             alt={imageAlt}
             width={800}
             height={600}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 800px"
             className="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700 ease-out"
           />
         )}
@@ -134,27 +132,9 @@ export default function ProjectCard({
             </span>
           ))}
         </div>
-
-        {/* Action Links
-        <div className="flex gap-8">
-          <a
-            href={demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 font-label-caps text-label-caps text-primary hover:text-white transition-colors animated-underline uppercase font-bold tracking-wider"
-          >
-            LIVE DEMO <ArrowUpRight className="w-[18px] h-[18px]" />
-          </a>
-          <a
-            href={codeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors animated-underline uppercase font-bold tracking-wider"
-          >
-            VIEW CODE <Code2 className="w-[18px] h-[18px]" />
-          </a>
-        </div> */}
       </div>
     </div>
   );
 }
+
+export default memo(ProjectCardComponent);

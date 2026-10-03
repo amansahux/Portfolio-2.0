@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Lenis from "lenis";
@@ -14,12 +14,7 @@ import {
   Code2,
   Terminal,
   Database,
-  Cpu,
-  Layers,
   Sparkles,
-  ExternalLink,
-  ShieldCheck,
-  Zap,
 } from "lucide-react";
 import { ProjectItem } from "@/data/projects";
 
@@ -30,7 +25,22 @@ interface ProjectDetailViewProps {
   allProjects: { slug: string; title: string }[];
 }
 
-export default function ProjectDetailView({
+// Pure helper function outside component scope
+function getTechIcon(tech: string) {
+  const t = tech.toLowerCase();
+  if (t.includes("mongo") || t.includes("database") || t.includes("redis")) {
+    return <Database className="w-3.5 h-3.5 text-outline" />;
+  }
+  if (t.includes("gemini") || t.includes("ai") || t.includes("framer")) {
+    return <Sparkles className="w-3.5 h-3.5 text-outline" />;
+  }
+  if (t.includes("react") || t.includes("next") || t.includes("node") || t.includes("express")) {
+    return <Terminal className="w-3.5 h-3.5 text-outline" />;
+  }
+  return <Code2 className="w-3.5 h-3.5 text-outline" />;
+}
+
+function ProjectDetailViewComponent({
   project,
   allProjects,
 }: ProjectDetailViewProps) {
@@ -64,15 +74,16 @@ export default function ProjectDetailView({
       window.scrollTo(0, 0);
     });
 
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
       if (typeof ScrollTrigger !== "undefined") {
         ScrollTrigger.update();
       }
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    const rafId = requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     // GSAP ScrollTrigger Animations
     const ctx = gsap.context(() => {
@@ -110,21 +121,6 @@ export default function ProjectDetailView({
     };
   }, [project.slug]);
 
-  // Tech icon selector
-  const getTechIcon = (tech: string) => {
-    const t = tech.toLowerCase();
-    if (t.includes("mongo") || t.includes("database") || t.includes("redis")) {
-      return <Database className="w-3.5 h-3.5 text-outline" />;
-    }
-    if (t.includes("gemini") || t.includes("ai") || t.includes("framer")) {
-      return <Sparkles className="w-3.5 h-3.5 text-outline" />;
-    }
-    if (t.includes("react") || t.includes("next") || t.includes("node") || t.includes("express")) {
-      return <Terminal className="w-3.5 h-3.5 text-outline" />;
-    }
-    return <Code2 className="w-3.5 h-3.5 text-outline" />;
-  };
-
   const nextProjectItem = allProjects.find((p) => p.slug === project.nextProject);
 
   return (
@@ -132,7 +128,6 @@ export default function ProjectDetailView({
       ref={containerRef}
       className="min-h-screen bg-[#0e0e0e] text-on-surface selection:bg-surface-container-highest selection:text-primary font-body-md"
     >
-
       {/* MAIN CONTENT CONTAINER */}
       <main className="pt-14 pb-20 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col gap-16 md:gap-24">
         {/* HEADER / SLUG SWITCHER BAR */}
@@ -169,9 +164,7 @@ export default function ProjectDetailView({
           </div>
         </section>
 
-        {/* ========================================================== */}
         {/* SECTION 01: CONTEXT & SCOPE */}
-        {/* ========================================================== */}
         <section className="stitch-hero-item flex flex-col gap-8">
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3 font-label-caps text-label-caps text-secondary tracking-widest uppercase">
@@ -245,15 +238,12 @@ export default function ProjectDetailView({
           </div>
         </section>
 
-        {/* ========================================================== */}
         {/* SECTION 02: PROCESS & STRATEGY */}
-        {/* ========================================================== */}
         <section className="stitch-section flex flex-col gap-8 border-t hairline-border pt-12">
           <div className="font-label-caps text-label-caps text-outline uppercase tracking-widest">
             02 // SYSTEM STRATEGY & STACK
           </div>
 
-          {/* Concise Editorial Two-Column */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
             <div className="flex flex-col gap-3">
               <h2 className="font-headline-lg text-2xl md:text-3xl text-primary font-semibold tracking-tight">
@@ -290,9 +280,7 @@ export default function ProjectDetailView({
           </div>
         </section>
 
-        {/* ========================================================== */}
         {/* SECTION 03: VISUALS & MEDIA */}
-        {/* ========================================================== */}
         <section className="stitch-section flex flex-col gap-6 border-t hairline-border pt-12">
           <div className="flex items-center justify-between">
             <div className="font-label-caps text-label-caps text-outline uppercase tracking-widest">
@@ -325,12 +313,13 @@ export default function ProjectDetailView({
                 alt={project.media?.[0]?.alt || project.imageAlt || project.title}
                 fill
                 priority
+                sizes="(max-width: 1280px) 100vw, 1280px"
                 className="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-700 ease-out"
               />
             </div>
           </div>
 
-          {/* Two Balanced Supporting Screenshots — media[1] and media[2] */}
+          {/* Supporting Screenshots */}
           {project.media && project.media.length > 2 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               {project.media.slice(1, 3).map((item, idx) => (
@@ -349,7 +338,7 @@ export default function ProjectDetailView({
                       src={item.src}
                       alt={item.alt}
                       fill
-                      sizes="(max-width: 640px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, 640px"
                       className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500 ease-out"
                     />
                   </div>
@@ -364,15 +353,12 @@ export default function ProjectDetailView({
           )}
         </section>
 
-        {/* ========================================================== */}
         {/* SECTION 04: RESULTS & IMPACT */}
-        {/* ========================================================== */}
         <section className="stitch-section flex flex-col gap-8 border-t hairline-border pt-12">
           <div className="font-label-caps text-label-caps text-outline uppercase tracking-widest">
             04 // VERIFIED BENCHMARKS & IMPACT
           </div>
 
-          {/* Minimal Punchy Impact Metrics in Large Silver Typography */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 py-6">
             {project.results.map((res, idx) => (
               <div key={idx} className="flex flex-col gap-1 border-l-2 border-white/20 pl-4">
@@ -389,7 +375,6 @@ export default function ProjectDetailView({
             ))}
           </div>
 
-          {/* Brief Qualitative Takeaway Banner */}
           <div className="p-5 rounded bg-surface-container border hairline-border flex items-start gap-4">
             <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
             <div className="flex flex-col gap-0.5">
@@ -403,9 +388,7 @@ export default function ProjectDetailView({
           </div>
         </section>
 
-        {/* ========================================================== */}
         {/* SECTION 05: LINKS & ACCESS */}
-        {/* ========================================================== */}
         <section className="stitch-section flex flex-col gap-8 border-t hairline-border pt-12 pb-4">
           <div className="flex items-center justify-between">
             <div className="font-label-caps text-label-caps text-outline uppercase tracking-widest">
@@ -416,7 +399,6 @@ export default function ProjectDetailView({
             </span>
           </div>
 
-          {/* Refined Luxury Silver Action Dock */}
           <div className="p-6 md:p-8 rounded-xl bg-surface-container-low border hairline-border metallic-bevel flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex flex-col gap-1 text-center md:text-left">
               <h3 className="font-headline-lg text-2xl text-primary font-semibold">
@@ -467,3 +449,5 @@ export default function ProjectDetailView({
     </div>
   );
 }
+
+export default memo(ProjectDetailViewComponent);

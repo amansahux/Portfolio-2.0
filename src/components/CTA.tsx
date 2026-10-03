@@ -1,15 +1,20 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback, memo } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ContactModal from "./contact/ContactModal";
 import Character from "../assets/Hero.bg.png";
+
+// Dynamically import ContactModal so modal and form code is loaded only when user triggers contact
+const ContactModal = dynamic(() => import("./contact/ContactModal"), {
+  ssr: false,
+});
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function CTA() {
+function CTAComponent() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -32,18 +37,27 @@ export default function CTA() {
     return () => ctx.revert();
   }, []);
 
+  const handleOpenModal = useCallback(() => {
+    setIsModalOpen(true);
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setIsModalOpen(false);
+  }, []);
+
   return (
     <section
       ref={sectionRef}
       className="py-section-gap relative overflow-hidden"
       id="contact"
     >
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
           alt="Background Texture"
           src={Character}
           width={1920}
           height={1080}
+          sizes="(max-width: 1024px) 100vw, 1920px"
           className="w-full h-full object-cover object-[calc(50%-200px)_center] sm:object-[calc(50%-150px)_center]"
         />
       </div>
@@ -68,14 +82,14 @@ export default function CTA() {
 
         <div className="cta-element flex flex-wrap justify-center gap-8 lg:gap-60 items-center">
           <button
-            onClick={() => setIsModalOpen(true)}
+            onClick={handleOpenModal}
             className="primary-glow-btn cursor-pointer text-on-primary px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-extrabold transition-all duration-300"
           >
             Contact Me
           </button>
           <a
             href="/Aman Resume.pdf"
-            download="/Aman Resume.pdf"
+            download="Aman Resume.pdf"
             className="border cursor-pointer border-outline-variant text-on-surface px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-bold hover:border-primary hover:text-primary transition-all duration-300 backdrop-blur-md"
           >
             Download Resume
@@ -110,10 +124,14 @@ export default function CTA() {
         </div>
       </div>
 
-      <ContactModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+      {isModalOpen && (
+        <ContactModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
+      )}
     </section>
   );
 }
+
+export default memo(CTAComponent);

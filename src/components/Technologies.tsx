@@ -1,12 +1,142 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, memo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Technologies() {
+interface TechItem {
+  name: string;
+  percent: string;
+  iconSrc: string;
+  iconAlt: string;
+}
+
+const TECHNOLOGIES: TechItem[] = [
+  {
+    name: "MongoDB",
+    percent: "80%",
+    iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    iconAlt: "MongoDB",
+  },
+  {
+    name: "Express.js",
+    percent: "85%",
+    iconSrc: "https://cdn.simpleicons.org/express/ffffff",
+    iconAlt: "Express.js",
+  },
+  {
+    name: "React.js",
+    percent: "85%",
+    iconSrc: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg",
+    iconAlt: "React.js",
+  },
+  {
+    name: "Node.js",
+    percent: "80%",
+    iconSrc: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg",
+    iconAlt: "Node.js",
+  },
+  {
+    name: "Next.js",
+    percent: "75%",
+    iconSrc: "https://cdn.simpleicons.org/nextdotjs/ffffff",
+    iconAlt: "Next.js",
+  },
+  {
+    name: "TypeScript",
+    percent: "80%",
+    iconSrc: "https://cdn.simpleicons.org/typescript",
+    iconAlt: "TypeScript",
+  },
+  {
+    name: "Redux Toolkit",
+    percent: "80%",
+    iconSrc: "https://raw.githubusercontent.com/reduxjs/redux/master/logo/logo.svg",
+    iconAlt: "Redux",
+  },
+  {
+    name: "Redis",
+    percent: "80%",
+    iconSrc: "https://www.vectorlogo.zone/logos/redis/redis-icon.svg",
+    iconAlt: "Redis",
+  },
+  {
+    name: "GSAP",
+    percent: "70%",
+    iconSrc: "https://cdn.simpleicons.org/greensock/88CE02",
+    iconAlt: "GSAP",
+  },
+  {
+    name: "GEN AI",
+    percent: "60%",
+    iconSrc: "https://ik.imagekit.io/sg9dyvpi0/Screenshot_2026-07-28_162233-removebg-preview.png",
+    iconAlt: "GEN AI",
+  },
+  {
+    name: "LangChain",
+    percent: "60%",
+    iconSrc: "https://ik.imagekit.io/sg9dyvpi0/Screenshot_2026-07-28_162452-removebg-preview.png",
+    iconAlt: "LangChain",
+  },
+  {
+    name: "Git",
+    percent: "85%",
+    iconSrc: "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg",
+    iconAlt: "Git",
+  },
+  {
+    name: "GitHub",
+    percent: "75%",
+    iconSrc: "https://cdn.simpleicons.org/github/ffffff",
+    iconAlt: "GitHub",
+  },
+  {
+    name: "Tailwind CSS",
+    percent: "90%",
+    iconSrc: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
+    iconAlt: "Tailwind CSS",
+  },
+  {
+    name: "Docker",
+    percent: "85%",
+    iconSrc: "https://www.vectorlogo.zone/logos/docker/docker-icon.svg",
+    iconAlt: "Docker",
+  },
+  {
+    name: "TanStack Query",
+    percent: "85%",
+    iconSrc: "https://cdn.simpleicons.org/reactquery",
+    iconAlt: "TanStack Query",
+  },
+  {
+    name: "Postman",
+    percent: "90%",
+    iconSrc: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg",
+    iconAlt: "Postman",
+  },
+  {
+    name: "JavaScript",
+    percent: "90%",
+    iconSrc: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg",
+    iconAlt: "JavaScript",
+  },
+  {
+    name: "Socket.IO",
+    percent: "85%",
+    iconSrc: "https://ik.imagekit.io/sg9dyvpi0/image_b1maohNkD.png",
+    iconAlt: "Socket.IO",
+  },
+  {
+    name: "Antigravity",
+    percent: "80%",
+    iconSrc: "https://antigravity.google/assets/image/antigravity-logo.png",
+    iconAlt: "Antigravity",
+  },
+];
+
+function TechnologiesComponent() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
@@ -49,232 +179,6 @@ export default function Technologies() {
     return () => ctx.revert();
   }, []);
 
-  const technologies = [
-    {
-      name: "MongoDB",
-      percent: "80%",
-      icon: (
-        <img
-          src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-          alt="MongoDB"
-          className="w-30 h-30"
-        />
-      ),
-    },
-    {
-      name: "Express.js",
-      percent: "85%",
-      icon: (
-        <img
-          src="https://cdn.simpleicons.org/express/ffffff"
-          alt="Express.js"
-          className="h-40 w-40"
-        />
-      ),
-    },
-
-    {
-      name: "React.js",
-      percent: "85%",
-      icon: (
-        <img
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
-          alt="React.js"
-          className="h-40 w-40"
-        />
-      ),
-    },
-
-    {
-      name: "Node.js",
-      percent: "80%",
-      icon: (
-        <img
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
-          alt="Node.js"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "Next.js",
-      percent: "75%",
-      icon: (
-        <img
-          src="https://cdn.simpleicons.org/nextdotjs/ffffff"
-          alt="Next.js"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "TypeScript",
-      percent: "80%",
-      icon: (
-        <img
-          src="https://cdn.simpleicons.org/typescript"
-          alt="TypeScript"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "Redux Toolkit",
-      percent: "80%",
-      icon: (
-        <img
-          src="https://raw.githubusercontent.com/reduxjs/redux/master/logo/logo.svg"
-          alt="Redux"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "Redis",
-      percent: "80%",
-      icon: (
-        <img
-          src="https://www.vectorlogo.zone/logos/redis/redis-icon.svg"
-          alt="Redis"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "GSAP",
-      percent: "70%",
-      icon: (
-        <img
-          src="https://cdn.simpleicons.org/greensock/88CE02"
-          alt="GSAP"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "GEN AI",
-      percent: "60%",
-      icon: (
-        <img
-          src="https://ik.imagekit.io/sg9dyvpi0/Screenshot_2026-07-28_162233-removebg-preview.png"
-          alt="GEN AI"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "LangChain",
-      percent: "60%",
-      icon: (
-        <img
-          src="https://ik.imagekit.io/sg9dyvpi0/Screenshot_2026-07-28_162452-removebg-preview.png"
-          alt="LangChain"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "Git",
-      percent: "85%",
-      icon: (
-        <img
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg"
-          alt="Git"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "GitHub",
-      percent: "75%",
-      icon: (
-        <img
-          src="https://cdn.simpleicons.org/github/ffffff"
-          alt="GitHub"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "Tailwind CSS",
-      percent: "90%",
-      icon: (
-        <img
-          src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg"
-          alt="Tailwind CSS"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "Docker",
-      percent: "85%",
-      icon: (
-        <img
-          src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg"
-          alt="Docker"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "TanStack Query",
-      percent: "85%",
-      icon: (
-        <img
-          src="https://cdn.simpleicons.org/reactquery"
-          alt="TanStack Query"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "Postman",
-      percent: "90%",
-      icon: (
-        <img
-          src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg"
-          alt="Postman"
-          className="h-40 w-40"
-        />
-      ),
-    },
-
-    {
-      name: "JavaScript",
-      percent: "90%",
-      icon: (
-        <img
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
-          alt="JavaScript"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "Socket.IO",
-      percent: "85%",
-      icon: (
-        <img
-      src="https://ik.imagekit.io/sg9dyvpi0/image_b1maohNkD.png"
-          alt="Socket.IO"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "Antigravity",
-      percent: "80%",
-      icon: (
-        <img
-              src="https://antigravity.google/assets/image/antigravity-logo.png"
-          alt="Antigravity"
-          className="h-40 w-40"
-        />
-      ),
-    },
-  ];
-
   return (
     <section
       ref={sectionRef}
@@ -294,17 +198,21 @@ export default function Technologies() {
           ref={gridRef}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-fr items-stretch"
         >
-          {technologies.map((tech, idx) => (
+          {TECHNOLOGIES.map((tech) => (
             <div
-              key={idx}
+              key={tech.name}
               className="tech-card glass-card p-8 group hover:bg-white/5 transition-all duration-500 rounded-xl flex flex-col justify-between h-full"
             >
               {/* Icon wrapper with fixed dimensions */}
               <div className="flex justify-center items-center mb-4">
                 <div className="w-16 h-16 md:h-20 md:w-20 lg:h-25 lg:w-25 xl:w-30 xl:h-30 flex items-center justify-center">
-                  {React.cloneElement(tech.icon as any, {
-                    className: "w-full h-full object-contain",
-                  })}
+                  <img
+                    src={tech.iconSrc}
+                    alt={tech.iconAlt}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
               <div>
@@ -325,3 +233,5 @@ export default function Technologies() {
     </section>
   );
 }
+
+export default memo(TechnologiesComponent);

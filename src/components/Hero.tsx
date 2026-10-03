@@ -1,21 +1,20 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback, memo } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { Quote } from "lucide-react";
 import HeroImage from "../assets/Hero.bg.png";
 import HeroSmallImage from "../assets/Hero.small.bg.png";
 
-
-export default function Hero({ isReady = true }: { isReady?: boolean }) {
+function HeroComponent({ isReady = true }: { isReady?: boolean }) {
   const heroRef = useRef<HTMLElement>(null);
-    const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Fade and upward motion
-     tlRef.current = gsap.timeline({ paused: true });
+      tlRef.current = gsap.timeline({ paused: true });
       tlRef.current.from(".hero-element", {
         y: 50,
         opacity: 0,
@@ -23,17 +22,39 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
         stagger: 0.15,
         ease: "power3.out",
       });
-
-      // Subtle float animation for the image container is handled via CSS class `animate-float` or GSAP
     }, heroRef);
 
     return () => ctx.revert();
   }, []);
+
   useEffect(() => {
     if (isReady && tlRef.current) {
       tlRef.current.play();
     }
   }, [isReady]);
+
+  const handleScrollToContact = useCallback(() => {
+    if ((window as any).lenis) {
+      (window as any).lenis.scrollTo("#contact");
+    } else {
+      const target = document.querySelector("#contact");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, []);
+
+  const handleScrollToWork = useCallback(() => {
+    if ((window as any).lenis) {
+      (window as any).lenis.scrollTo("#work");
+    } else {
+      const target = document.querySelector("#work");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, []);
+
   return (
     <section
       ref={heroRef}
@@ -44,8 +65,8 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
           alt="Aman Sahu Background"
           src={HeroImage}
           fill
-          sizes="100vw"
-          className=" hidden md:block object-cover object-[calc(50%-100px)_center]  lg:object-[calc(50%+250px)_center]"
+          sizes="(max-width: 768px) 0vw, 100vw"
+          className="hidden md:block object-cover object-[calc(50%-100px)_center] lg:object-[calc(50%+250px)_center]"
           placeholder="blur"
           priority
         />
@@ -53,7 +74,8 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
           alt="Aman Sahu Background"
           src={HeroSmallImage}
           fill
-          className=" md:hidden object-cover"
+          sizes="(max-width: 768px) 100vw, 0vw"
+          className="md:hidden object-cover"
           placeholder="blur"
           priority
         />
@@ -76,13 +98,13 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
             <span className="text-gradient-silver">SAHU</span>
           </h1>
           <div className="hero-element flex items-center gap-4 mb-8">
-            <span className="w-8 h-px bg-outline-variant  hidden sm:block"></span>
+            <span className="w-8 h-px bg-outline-variant hidden sm:block"></span>
             <p className="font-headline-md text-headline-md text-on-surface-variant">
               Mern Developer, Jharkhand
             </p>
           </div>
 
-          <div className=" hidden lg:block hero-element glass-card p-8 rounded-xl border-l-4 border-l-primary mb-12">
+          <div className="hidden lg:block hero-element glass-card p-8 rounded-xl border-l-4 border-l-primary mb-12">
             <Quote className="text-primary w-8 h-8 mb-4" />
             <p className="font-body-lg text-body-lg text-on-surface leading-relaxed italic opacity-90">
               Crafting seamless web applications that combine technical
@@ -93,31 +115,13 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
 
           <div className="hero-element flex flex-wrap gap-6">
             <button 
-              onClick={() => {
-                if ((window as any).lenis) {
-                  (window as any).lenis.scrollTo("#contact");
-                } else {
-                  const target = document.querySelector("#contact");
-                  if (target) {
-                    target.scrollIntoView({ behavior: "smooth" });
-                  }
-                }
-              }}
+              onClick={handleScrollToContact}
               className="primary-glow-btn cursor-pointer text-on-primary px-10 py-5 rounded-full font-label-caps text-label-caps uppercase font-extrabold transition-all duration-300"
             >
-             Book Your Call
+              Book Your Call
             </button>
             <button 
-              onClick={() => {
-                if ((window as any).lenis) {
-                  (window as any).lenis.scrollTo("#work");
-                } else {
-                  const target = document.querySelector("#work");
-                  if (target) {
-                    target.scrollIntoView({ behavior: "smooth" });
-                  }
-                }
-              }}
+              onClick={handleScrollToWork}
               className="border border-outline-variant cursor-pointer text-on-surface px-10 py-5 rounded-full font-label-caps text-label-caps uppercase font-bold hover:border-primary hover:text-primary transition-all duration-300"
             >
               View Projects
@@ -140,3 +144,5 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
     </section>
   );
 }
+
+export default memo(HeroComponent);

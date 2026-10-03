@@ -1,15 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import ProjectCard, { ProjectProps } from "./ProjectCard";
-import Link from "next/link";
 
 interface ProjectsGridProps {
   projects: Omit<ProjectProps, "index">[];
   startIndex?: number;
 }
 
-export default function ProjectsGrid({
+function ProjectsGridComponent({
   projects,
   startIndex = 0,
 }: ProjectsGridProps) {
@@ -17,7 +16,7 @@ export default function ProjectsGrid({
     <div className="space-y-32">
       {projects.map((project, idx) => (
         <ProjectCard
-          key={idx}
+          key={project.slug || project.title || idx}
           {...project}
           index={startIndex + idx}
         />
@@ -25,3 +24,5 @@ export default function ProjectsGrid({
     </div>
   );
 }
+
+export default memo(ProjectsGridComponent);

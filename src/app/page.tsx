@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, memo, useCallback } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,18 +14,92 @@ import Technologies from "@/components/Technologies";
 import Services from "@/components/Services";
 import ProjectsSection from "@/components/projects/ProjectsSection";
 import StatsSection from "@/components/StatsSection";
-import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
 // Module-level in-memory flag so client-side SPA navigation never re-triggers the intro loader
 let hasIntroPlayed = false;
 
+// Self-contained Intro Loader to isolate 40fps progress state updates from the rest of the page tree
+const IntroLoader = memo(function IntroLoader({
+  onComplete,
+}: {
+  onComplete: () => void;
+}) {
+  const [progress, setProgress] = useState(0);
+  const loaderRef = useRef<HTMLDivElement>(null);
+
+  const handleLoadingComplete = useCallback(() => {
+    hasIntroPlayed = true;
+    if (loaderRef.current) {
+      gsap.to(loaderRef.current, {
+        opacity: 0,
+        yPercent: -100,
+        duration: 1,
+        ease: "power4.inOut",
+        onComplete: () => {
+          onComplete();
+        },
+      });
+    } else {
+      onComplete();
+    }
+  }, [onComplete]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          handleLoadingComplete();
+          return 100;
+        }
+        return prev + 1;
+      });
+    }, 25);
+
+    return () => clearInterval(interval);
+  }, [handleLoadingComplete]);
+
+  return (
+    <div
+      ref={loaderRef}
+      className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#050505] text-white overflow-hidden"
+    >
+      {/* Subtle ambient glow in the background */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] h-[80vw] max-w-[800px] max-h-[800px] bg-white/[0.02] blur-[100px] rounded-full pointer-events-none"></div>
+
+      <div className="relative z-10 flex flex-col items-center justify-center">
+        {/* Number Display */}
+        <div className="flex items-baseline mb-6 font-space-grotesk">
+          <span className="text-8xl md:text-9xl lg:text-[180px] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white/80 to-white/10 select-none pr-4">
+            {progress}
+          </span>
+          <span className="text-2xl md:text-4xl lg:text-6xl font-light text-white/30 ml-0 md:ml-2 select-none">
+            %
+          </span>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="w-[200px] md:w-[300px] h-[2px] bg-white/10 rounded-full relative overflow-hidden mb-8">
+          <div
+            className="absolute top-0 left-0 h-full bg-gradient-to-r from-white/20 via-white to-white/80 shadow-[0_0_20px_rgba(255,255,255,0.7)] transition-all duration-300 ease-out"
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+
+        {/* Loading Text */}
+        <p className="uppercase tracking-[0.4em] md:tracking-[0.6em] text-[10px] md:text-xs text-white/40 font-light select-none">
+          Initializing Experience
+        </p>
+      </div>
+    </div>
+  );
+});
+
 export default function Home() {
-  const [progress, setProgress] = useState(hasIntroPlayed ? 100 : 0);
   const [isReady, setIsReady] = useState(hasIntroPlayed);
   const [showLoader, setShowLoader] = useState(!hasIntroPlayed);
-  const loaderRef = useRef<HTMLDivElement>(null);
 
   // Force scroll to top on page reload/fresh visit
   useEffect(() => {
@@ -41,46 +115,16 @@ export default function Home() {
     }
   }, []);
 
-  function handleLoading() {
-    hasIntroPlayed = true;
-    gsap.to(loaderRef.current, {
-      opacity: 0,
-      yPercent: -100,
-      duration: 1,
-      ease: "power4.inOut",
-      onComplete: () => {
-        setIsReady(true);
-        setShowLoader(false);
-      },
-    });
-  }
+  const handleLoaderComplete = useCallback(() => {
+    setIsReady(true);
+    setShowLoader(false);
+  }, []);
 
   useEffect(() => {
     if (isReady && (window as any).lenis) {
       (window as any).lenis.start();
     }
   }, [isReady]);
-
-  useEffect(() => {
-    // If returning from another page via client-side navigation, skip loader
-    if (hasIntroPlayed) {
-      setShowLoader(false);
-      setIsReady(true);
-    } else {
-      // Simulate loading progress on initial load or full reload on `/`
-      const interval = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 100) {
-            clearInterval(interval);
-            handleLoading();
-          }
-          return prev + 1;
-        });
-      }, 25);
-
-      return () => clearInterval(interval);
-    }
-  }, []);
 
   useEffect(() => {
     // Initialize smooth scrolling with Lenis
@@ -94,24 +138,24 @@ export default function Home() {
       touchMultiplier: 2,
     });
 
-    // Make lenis globally accessible for components like Navbar
     (window as any).lenis = lenis;
     if (!hasIntroPlayed) {
       lenis.stop();
     }
 
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      // Keep GSAP ScrollTrigger in sync with Lenis smooth scrolling
       if (typeof ScrollTrigger !== "undefined") {
         ScrollTrigger.update();
       }
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
       delete (window as any).lenis;
     };
@@ -119,40 +163,7 @@ export default function Home() {
 
   return (
     <main className="selection:bg-primary-container selection:text-on-primary overflow-hidden">
-      {showLoader && (
-        <div
-          ref={loaderRef}
-          className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#050505] text-white overflow-hidden"
-        >
-          {/* Subtle ambient glow in the background */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] h-[80vw] max-w-[800px] max-h-[800px] bg-white/[0.02] blur-[100px] rounded-full pointer-events-none"></div>
-
-          <div className="relative z-10 flex flex-col items-center justify-center">
-            {/* Number Display */}
-            <div className="flex items-baseline mb-6 font-space-grotesk">
-              <span className="text-8xl md:text-9xl lg:text-[180px] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white/80 to-white/10 select-none pr-4">
-                {Math.min(progress, 100)}
-              </span>
-              <span className="text-2xl md:text-4xl lg:text-6xl font-light text-white/30 ml-0 md:ml-2 select-none">
-                %
-              </span>
-            </div>
-
-            {/* Progress Bar */}
-            <div className="w-[200px] md:w-[300px] h-[2px] bg-white/10 rounded-full relative overflow-hidden mb-8">
-              <div
-                className="absolute top-0 left-0 h-full bg-gradient-to-r from-white/20 via-white to-white/80 shadow-[0_0_20px_rgba(255,255,255,0.7)] transition-all duration-300 ease-out"
-                style={{ width: `${Math.min(progress, 100)}%` }}
-              ></div>
-            </div>
-
-            {/* Loading Text */}
-            <p className="uppercase tracking-[0.4em] md:tracking-[0.6em] text-[10px] md:text-xs text-white/40 font-light select-none">
-              Initializing Experience
-            </p>
-          </div>
-        </div>
-      )}
+      {showLoader && <IntroLoader onComplete={handleLoaderComplete} />}
       <Navbar isReady={isReady} />
       <Hero isReady={isReady} />
       <About />
@@ -160,7 +171,6 @@ export default function Home() {
       <Services />
       <ProjectsSection />
       <StatsSection />
-      {/* <Testimonials /> */}
       <CTA />
       <Footer />
     </main>

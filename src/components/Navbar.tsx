@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback, memo } from "react";
 import gsap from "gsap";
-import { Menu } from "lucide-react";
 
-export default function Navbar({ isReady = true }: { isReady?: boolean }) {
+function NavbarComponent({ isReady = true }: { isReady?: boolean }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const tlRef = useRef<gsap.core.Tween | null>(null);
@@ -14,18 +13,19 @@ export default function Navbar({ isReady = true }: { isReady?: boolean }) {
     tlRef.current = gsap.fromTo(
       navRef.current,
       { y: -100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", paused: true },
+      { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", paused: true }
     );
 
+    let lastScrolledState = false;
     const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      const scrolled = window.scrollY > 100;
+      if (scrolled !== lastScrolledState) {
+        lastScrolledState = scrolled;
+        setIsScrolled(scrolled);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -34,20 +34,21 @@ export default function Navbar({ isReady = true }: { isReady?: boolean }) {
       tlRef.current.play();
     }
   }, [isReady]);
-  const handleSmoothScroll = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    targetId: string,
-  ) => {
-    e.preventDefault();
-    if ((window as any).lenis) {
-      (window as any).lenis.scrollTo(targetId);
-    } else {
-      const target = document.querySelector(targetId);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
+
+  const handleSmoothScroll = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+      e.preventDefault();
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(targetId);
+      } else {
+        const target = document.querySelector(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
       }
-    }
-  };
+    },
+    []
+  );
 
   return (
     <nav
@@ -92,7 +93,7 @@ export default function Navbar({ isReady = true }: { isReady?: boolean }) {
           <a
             href="#contact"
             onClick={(e) => handleSmoothScroll(e, "#contact")}
-            className="ml-4 whitespace-nowrap  cursor-pointer primary-glow-btn text-on-primary px-6 py-2.5 rounded-full font-label-caps text-label-caps uppercase font-bold transition-all duration-300"
+            className="ml-4 whitespace-nowrap cursor-pointer primary-glow-btn text-on-primary px-6 py-2.5 rounded-full font-label-caps text-label-caps uppercase font-bold transition-all duration-300"
           >
             Let's Talk
           </a>
@@ -101,3 +102,5 @@ export default function Navbar({ isReady = true }: { isReady?: boolean }) {
     </nav>
   );
 }
+
+export default memo(NavbarComponent);

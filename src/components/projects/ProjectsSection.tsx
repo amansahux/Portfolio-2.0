@@ -1,28 +1,24 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, memo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProjectsHeader from "./ProjectsHeader";
 import ProjectsGrid from "./ProjectsGrid";
-import Snitch from "../../assets/Snitch.png";
+import { projectsData as defaultProjects } from "../../data/projects";
 
 gsap.registerPlugin(ScrollTrigger);
 
-import { projectsData as defaultProjects } from "../../data/projects";
+const INITIAL_PROJECTS = defaultProjects.slice(0, 2);
+const EXTRA_PROJECTS = defaultProjects.slice(2);
+const HAS_EXTRA_PROJECTS = defaultProjects.length > 2;
 
-export default function ProjectsSection() {
+function ProjectsSectionComponent() {
   const sectionRef = useRef<HTMLElement>(null);
   const extraProjectsRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-
-  // If projects list length <= 2, show all and hide the button.
-  // Otherwise, show first 2 initially and show the button.
-  const hasExtraProjects = defaultProjects.length > 2;
-  const initialProjects = defaultProjects.slice(0, 2);
-  const extraProjects = defaultProjects.slice(2);
 
   // Header and section ScrollTrigger reveal animations
   useEffect(() => {
@@ -34,7 +30,6 @@ export default function ProjectsSection() {
           toggleActions: "play none none none",
         },
         y: 40,
-        // opacity: 0,
         duration: 0.8,
         stagger: 0.2,
       });
@@ -87,13 +82,11 @@ export default function ProjectsSection() {
       // Expand Animation
       setIsExpanded(true);
 
-      // We wait for a tick so that React renders the extra projects DOM elements,
-      // allowing scrollHeight calculation.
+      // Wait for React to render extra projects DOM elements before calculating height
       setTimeout(() => {
         if (!extraProjectsRef.current) return;
         const el = extraProjectsRef.current;
 
-        // Temporarily set overflow-hidden to calculate natural height
         el.style.display = "block";
         el.style.height = "auto";
         const naturalHeight = el.scrollHeight;
@@ -112,13 +105,11 @@ export default function ProjectsSection() {
             duration: 0.8,
             ease: "power3.out",
             onComplete: () => {
-              // Set height back to auto so it stays responsive
               el.style.height = "auto";
               setIsAnimating(false);
-              // Refresh ScrollTriggers since layout height has increased
               ScrollTrigger.refresh();
             },
-          },
+          }
         );
 
         // Staggered fade and rise of the extra cards
@@ -132,7 +123,7 @@ export default function ProjectsSection() {
             delay: 0.1,
             stagger: 0.15,
             ease: "power2.out",
-          },
+          }
         );
       }, 0);
     }
@@ -145,10 +136,10 @@ export default function ProjectsSection() {
         <ProjectsHeader />
 
         {/* Initial Projects */}
-        <ProjectsGrid projects={initialProjects} startIndex={0} />
+        <ProjectsGrid projects={INITIAL_PROJECTS} startIndex={0} />
 
         {/* Extra Projects (GSAP Animated Wrapper) */}
-        {hasExtraProjects && (
+        {HAS_EXTRA_PROJECTS && (
           <div
             ref={extraProjectsRef}
             className="overflow-hidden"
@@ -158,10 +149,10 @@ export default function ProjectsSection() {
               display: isExpanded ? "block" : "none",
             }}
           >
-            {/* Added pt-32 to preserve section gap (space-y-32) between project cards */}
+            {/* Added pt-32 to preserve section gap between project cards */}
             <div className="pt-32 space-y-32">
-              {extraProjects.map((project, idx) => (
-                <div key={idx} className="extra-project-item">
+              {EXTRA_PROJECTS.map((project, idx) => (
+                <div key={project.slug || idx} className="extra-project-item">
                   <ProjectsGrid projects={[project]} startIndex={2 + idx} />
                 </div>
               ))}
@@ -170,12 +161,12 @@ export default function ProjectsSection() {
         )}
 
         {/* Explore All Work / Show Less Button */}
-        {hasExtraProjects && (
+        {HAS_EXTRA_PROJECTS && (
           <div className="mt-32 text-center reveal">
             <button
               ref={buttonRef}
               onClick={handleToggle}
-              className="border primary-glow-btn primary-glow-btn:hover text-black px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-bold hover:border-primary hover:bg-white/5 transition-all duration-300 tracking-widest backdrop-blur-md cursor-pointer"
+              className="border primary-glow-btn text-black px-12 py-5 rounded-full font-label-caps text-label-caps uppercase font-bold hover:border-primary hover:bg-white/5 transition-all duration-300 tracking-widest backdrop-blur-md cursor-pointer"
             >
               {isExpanded ? "Show Less" : "Explore All Work"}
             </button>
@@ -185,3 +176,5 @@ export default function ProjectsSection() {
     </section>
   );
 }
+
+export default memo(ProjectsSectionComponent);

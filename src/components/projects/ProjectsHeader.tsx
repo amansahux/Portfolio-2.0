@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 
-export default function ProjectsHeader() {
+function ProjectsHeaderComponent() {
   return (
     <div className="grid md:grid-cols-12 gap-8 items-end mb-24 reveal">
       <div className="md:col-span-8">
@@ -16,3 +16,5 @@ export default function ProjectsHeader() {
     </div>
   );
 }
+
+export default memo(ProjectsHeaderComponent);

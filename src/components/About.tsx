@@ -1,12 +1,24 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, memo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function About() {
+interface StatItem {
+  label: string;
+  percent: string;
+}
+
+const STATS: StatItem[] = [
+  { label: "MERN Stack", percent: "70%" },
+  { label: "React/Next", percent: "80%" },
+  { label: "Backend", percent: "75%" },
+  { label: "Architecture", percent: "95%" },
+];
+
+function AboutComponent() {
   const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
 
@@ -53,13 +65,6 @@ export default function About() {
     return () => ctx.revert();
   }, []);
 
-  const stats = [
-    { label: "MERN Stack", percent: "70%" },
-    { label: "React/Next", percent: "80%" },
-    { label: "Backend", percent: "75%" },
-    { label: "Architecture", percent: "95%" },
-  ];
-
   return (
     <section ref={sectionRef} className="py-section-gap" id="about">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
@@ -75,8 +80,8 @@ export default function About() {
           </div>
           
           <div ref={statsRef} className="grid grid-cols-2 gap-6">
-            {stats.map((stat, idx) => (
-              <div key={idx} className="stat-card glass-card p-6 rounded-lg text-center hover:scale-105 transition-transform silver-glow">
+            {STATS.map((stat) => (
+              <div key={stat.label} className="stat-card glass-card p-6 rounded-lg text-center hover:scale-105 transition-transform silver-glow">
                 <h3 className="font-label-caps text-label-caps text-on-surface-variant uppercase mb-4">
                   {stat.label}
                 </h3>
@@ -95,3 +100,5 @@ export default function About() {
     </section>
   );
 }
+
+export default memo(AboutComponent);

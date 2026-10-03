@@ -1,12 +1,19 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, memo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function StatsSection() {
+const STATS = [
+  { value: "10+", label: "Personal Projects" },
+  { value: "1+", label: "Years of Learning" },
+  { value: "20+", label: "Technologies Learned" },
+  { value: "1000+", label: "Hours Coding" },
+];
+
+function StatsSectionComponent() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +31,7 @@ export default function StatsSection() {
         ease: "power2.out",
       });
 
-      // Simple count-up logic
+      // Count-up logic
       const statNumbers = gsap.utils.toArray<HTMLElement>(".stat-number");
       statNumbers.forEach((el) => {
         const targetStr = el.innerText;
@@ -47,20 +54,13 @@ export default function StatsSection() {
               el.innerText =
                 Math.round(Number(this.targets()[0].innerText)) + suffix;
             },
-          },
+          }
         );
       });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
-
-  const stats = [
-    { value: "10+", label: "Personal Projects" },
-    { value: "1+", label: "Years of Learning" },
-    { value: "20+", label: "Technologies Learned" },
-    { value: "1000+", label: "Hours Coding" },
-  ];
 
   return (
     <section
@@ -72,8 +72,8 @@ export default function StatsSection() {
           ref={gridRef}
           className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center"
         >
-          {stats.map((stat, idx) => (
-            <div key={idx} className="stat-item">
+          {STATS.map((stat) => (
+            <div key={stat.label} className="stat-item">
               <p className="stat-number font-display-xl text-headline-lg text-primary mb-2">
                 {stat.value}
               </p>
@@ -87,3 +87,5 @@ export default function StatsSection() {
     </section>
   );
 }
+
+export default memo(StatsSectionComponent);

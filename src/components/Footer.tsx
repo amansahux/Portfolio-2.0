@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback, memo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronUp } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Footer() {
+function FooterComponent() {
   const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -27,13 +27,17 @@ export default function Footer() {
     return () => ctx.revert();
   }, []);
 
-  const handleBackToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleBackToTop = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+    if ((window as any).lenis) {
+      (window as any).lenis.scrollTo(0);
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
 
   return (
     <footer
@@ -62,7 +66,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Linkdin
+            LinkedIn
           </a>
           <a
             className="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase"
@@ -74,7 +78,7 @@ export default function Footer() {
           </a>
           <a
             className="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps uppercase"
-            href="mailto:amansahu1126.com"
+            href="mailto:amansahu1126@gmail.com"
           >
             Email
           </a>
@@ -84,7 +88,7 @@ export default function Footer() {
         <a
           href="#"
           onClick={handleBackToTop}
-          className="text-on-surface-variant hover:text-primary transition-colors text-label-caps font-label-caps flex items-center justify-center gap-2"
+          className="text-on-surface-variant hover:text-primary transition-colors text-label-caps font-label-caps flex items-center justify-center gap-2 cursor-pointer"
         >
           BACK TO TOP <ChevronUp className="w-5 h-5" />
         </a>
@@ -92,3 +96,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default memo(FooterComponent);
