@@ -58,8 +58,8 @@ export default function StatsSection() {
   const stats = [
     { value: "10+", label: "Personal Projects" },
     { value: "1+", label: "Years of Learning" },
-    { value: "15+", label: "Technologies Learned" },
-    { value: "500+", label: "Hours Coding" },
+    { value: "20+", label: "Technologies Learned" },
+    { value: "1000+", label: "Hours Coding" },
   ];
 
   return (
