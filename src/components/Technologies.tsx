@@ -108,23 +108,12 @@ export default function Technologies() {
       ),
     },
     {
-      name: "JavaScript",
-      percent: "90%",
+      name: "TypeScript",
+      percent: "80%",
       icon: (
         <img
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
-          alt="JavaScript"
-          className="h-40 w-40"
-        />
-      ),
-    },
-    {
-      name: "Git",
-      percent: "85%",
-      icon: (
-        <img
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg"
-          alt="Git"
+          src="https://cdn.simpleicons.org/typescript"
+          alt="TypeScript"
           className="h-40 w-40"
         />
       ),
@@ -141,18 +130,6 @@ export default function Technologies() {
       ),
     },
     {
-      name: "Tailwind CSS",
-      percent: "90%",
-      icon: (
-        <img
-          src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg"
-          alt="Tailwind CSS"
-          className="h-40 w-40"
-        />
-      ),
-    },
-
-    {
       name: "Redis",
       percent: "80%",
       icon: (
@@ -163,18 +140,6 @@ export default function Technologies() {
         />
       ),
     },
-    {
-      name: "GitHub",
-      percent: "75%",
-      icon: (
-        <img
-          src="https://cdn.simpleicons.org/github/ffffff"
-          alt="GitHub"
-          className="h-40 w-40"
-        />
-      ),
-    },
-
     {
       name: "GSAP",
       percent: "70%",
@@ -204,6 +169,106 @@ export default function Technologies() {
         <img
           src="https://ik.imagekit.io/sg9dyvpi0/Screenshot_2026-07-28_162452-removebg-preview.png"
           alt="LangChain"
+          className="h-40 w-40"
+        />
+      ),
+    },
+    {
+      name: "Git",
+      percent: "85%",
+      icon: (
+        <img
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg"
+          alt="Git"
+          className="h-40 w-40"
+        />
+      ),
+    },
+    {
+      name: "GitHub",
+      percent: "75%",
+      icon: (
+        <img
+          src="https://cdn.simpleicons.org/github/ffffff"
+          alt="GitHub"
+          className="h-40 w-40"
+        />
+      ),
+    },
+    {
+      name: "Tailwind CSS",
+      percent: "90%",
+      icon: (
+        <img
+          src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg"
+          alt="Tailwind CSS"
+          className="h-40 w-40"
+        />
+      ),
+    },
+    {
+      name: "Docker",
+      percent: "85%",
+      icon: (
+        <img
+          src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg"
+          alt="Docker"
+          className="h-40 w-40"
+        />
+      ),
+    },
+    {
+      name: "TanStack Query",
+      percent: "85%",
+      icon: (
+        <img
+          src="https://cdn.simpleicons.org/reactquery"
+          alt="TanStack Query"
+          className="h-40 w-40"
+        />
+      ),
+    },
+    {
+      name: "Postman",
+      percent: "90%",
+      icon: (
+        <img
+          src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg"
+          alt="Postman"
+          className="h-40 w-40"
+        />
+      ),
+    },
+
+    {
+      name: "JavaScript",
+      percent: "90%",
+      icon: (
+        <img
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+          alt="JavaScript"
+          className="h-40 w-40"
+        />
+      ),
+    },
+    {
+      name: "Socket.IO",
+      percent: "85%",
+      icon: (
+        <img
+      src="https://ik.imagekit.io/sg9dyvpi0/image_b1maohNkD.png"
+          alt="Socket.IO"
+          className="h-40 w-40"
+        />
+      ),
+    },
+    {
+      name: "Antigravity",
+      percent: "80%",
+      icon: (
+        <img
+              src="https://antigravity.google/assets/image/antigravity-logo.png"
+          alt="Antigravity"
           className="h-40 w-40"
         />
       ),
