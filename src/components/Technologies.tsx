@@ -46,7 +46,7 @@ const TECHNOLOGIES: TechItem[] = [
   },
   {
     name: "TypeScript",
-    percent: "80%",
+    percent: "70%",
     iconSrc: "https://cdn.simpleicons.org/typescript",
     iconAlt: "TypeScript",
   },
@@ -70,13 +70,13 @@ const TECHNOLOGIES: TechItem[] = [
   },
   {
     name: "GEN AI",
-    percent: "60%",
+    percent: "70%",
     iconSrc: "https://ik.imagekit.io/sg9dyvpi0/Screenshot_2026-07-28_162233-removebg-preview.png",
     iconAlt: "GEN AI",
   },
   {
     name: "LangChain",
-    percent: "60%",
+    percent: "70%",
     iconSrc: "https://ik.imagekit.io/sg9dyvpi0/Screenshot_2026-07-28_162452-removebg-preview.png",
     iconAlt: "LangChain",
   },
@@ -88,7 +88,7 @@ const TECHNOLOGIES: TechItem[] = [
   },
   {
     name: "GitHub",
-    percent: "75%",
+    percent: "80%",
     iconSrc: "https://cdn.simpleicons.org/github/ffffff",
     iconAlt: "GitHub",
   },
@@ -106,7 +106,7 @@ const TECHNOLOGIES: TechItem[] = [
   },
   {
     name: "TanStack Query",
-    percent: "85%",
+    percent: "90%",
     iconSrc: "https://cdn.simpleicons.org/reactquery",
     iconAlt: "TanStack Query",
   },
