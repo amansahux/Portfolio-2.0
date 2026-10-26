@@ -689,7 +689,7 @@ export const projectsData: ProjectItem[] = [
       "Deepened practical experience in full-stack architecture, role-based authorization, real-time systems, task workflows, server-state management, and building feature-based React applications.",
 
     // LINKS
-    demoUrl: "https://team-sync-live.up.railway.app",
+    demoUrl: "https://team-sync-x77s.onrender.com",
     codeUrl: "https://github.com/amansahux/TEAM-SYNC",
     versionLabel: "VERSION 1.0.0-PROD",
 
