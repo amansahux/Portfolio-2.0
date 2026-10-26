@@ -218,24 +218,189 @@ export const projectsData: ProjectItem[] = [
       "Strengthened full-stack product engineering skills across authentication, REST API architecture, dynamic survey systems, MongoDB data modeling, customer feedback analytics, responsive UX, and organization-scoped application design.",
 
     // LINKS
-    demoUrl: "https://recozfeedback.up.railway.app/",
+    demoUrl: "https://ricoz-feedback.onrender.com/",
     codeUrl: "https://github.com/amansahux/Ricoz-Feedback",
     versionLabel: "VERSION 1.0.0-MVP",
 
-    nextProject: "snitch",
+    nextProject: "slice-storm",
 
     imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Recoz%20Feedback%20Feature%20Grid.png",
     imageAlt: "Recoz Feedback Customer Feedback & Experience Platform",
   },
 
   // ==========================================================
-  // 02. SNITCH
+  // 02. SLICE STORM
+  // ==========================================================
+
+
+  {
+    slug: "slice-storm",
+    number: "02",
+    archiveLabel: "02 // ARCHIVE",
+    category: "FULL-STACK ARCADE GAME",
+    title: "SLICE STORM",
+    subtitle: "A Full-Stack Fruit-Slicing Arcade Experience",
+
+    description:
+      "A browser-based arcade fruit-slicing game featuring real-time canvas gameplay, responsive swipe controls, dynamic fruit physics, satisfying slicing effects, combo feedback, multiple game modes, player profiles, game history, and competitive leaderboards.",
+
+    // CONTEXT & SCOPE
+    client: "Veloop Rewards",
+    timeline: "Internship",
+    role: "Full-Stack Developer Intern",
+    team: "Internship Team",
+    year: "2026",
+    status: "Active Development",
+
+    // PROCESS & STRATEGY
+    problem:
+      "Building an engaging browser-based arcade game requires more than rendering moving objects. The challenge was to combine responsive real-time gameplay, accurate slicing interactions, convincing fruit physics, polished audio-visual feedback, persistent player data, and secure backend result handling into one cohesive experience.",
+
+    approach:
+      "Developed SLICE STORM as a full-stack arcade experience with a dedicated canvas-based game engine, interactive slicing mechanics, multiple gameplay modes, reusable frontend components, and a REST API for authentication, game sessions, results, player statistics, and leaderboards. Focused on iterative gameplay testing, responsive rendering, and improving the overall arcade experience.",
+
+    architecture:
+      "The application follows a MERN-based architecture with React and TypeScript powering the frontend, Redux Toolkit managing shared client state, and the Canvas API handling real-time gameplay rendering and physics. GSAP supports interface animations, while the existing audio system manages gameplay sound effects and background music. The backend uses Node.js and Express.js with a layered routes, controllers, services, and Mongoose model structure backed by MongoDB. Zod handles request validation, and JWT-based authentication protects player-specific operations.",
+
+    decisions: [
+      "Separated the real-time canvas game engine from React UI rendering to avoid unnecessary component re-renders during gameplay.",
+      "Used Redux Toolkit for shared application state such as authentication, game status, settings, and gameplay results rather than storing per-frame physics objects globally.",
+      "Implemented pointer and touch-based slicing interactions designed to support multiple fruits in a single swipe.",
+      "Built fruit movement, gravity, collision detection, sliced-fruit separation, particle effects, and blade-trail rendering as coordinated gameplay systems.",
+      "Organized gameplay into Classic, Arcade, and Zen modes with different rules and session behavior.",
+      "Designed Classic Mode around lives, missed-fruit penalties, and score-based survival gameplay.",
+      "Designed Arcade Mode around timed gameplay and faster-paced fruit slicing.",
+      "Designed Zen Mode around a 90-second session, continuous fruit spawning, no bombs, no lives, no score, and a total-fruits-sliced result.",
+      "Implemented reusable backend APIs for player authentication, game sessions, completed results, game history, and leaderboard retrieval.",
+      "Used MongoDB models for users, game sessions, and finalized game results instead of maintaining duplicate leaderboard records.",
+      "Applied request validation and server-side result checks to reduce invalid or duplicate game-result submissions.",
+      "Focused on responsive canvas sizing, object lifecycle cleanup, audio-context handling, and animation performance across viewport sizes.",
+    ],
+
+    technologies: [
+      "React.js",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "Redux Toolkit",
+      "React Router",
+      "Canvas API",
+      "GSAP",
+      "Tailwind CSS",
+      "Zod",
+      "JWT",
+      "Web Audio API",
+    ],
+
+    features: [
+      {
+        number: "01",
+        title: "Real-Time Fruit Slicing",
+        description:
+          "Slice animated fruits using mouse or touch gestures, with collision detection, fruit splitting, blade trails, particles, and support for slicing multiple fruits in one swipe.",
+      },
+      {
+        number: "02",
+        title: "Three Gameplay Modes",
+        description:
+          "Play Classic survival, timed Arcade sessions, or relaxed Zen Mode, each with its own gameplay rules and end-of-session behavior.",
+      },
+      {
+        number: "03",
+        title: "Arcade Feedback & Audio",
+        description:
+          "Combine slicing effects, glowing blade trails, fruit particles, combo feedback, background music, and adjustable sound controls for a more engaging gameplay experience.",
+      },
+      {
+        number: "04",
+        title: "Player Accounts & Progress",
+        description:
+          "Provide authenticated player experiences with persistent game sessions, completed results, game history, player statistics, and leaderboard rankings.",
+      },
+    ],
+
+    // VISUALS / MEDIA
+    telemetryUrl: "",
+    telemetryStatus: "",
+    media: [
+      {
+        type: "image",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-26%20133147.png",
+        alt: "SLICE STORM main gameplay screen",
+        caption: "SLICE STORM Real-Time Arcade Gameplay",
+        figureLabel: "FIGURE 2.1 — GAMEPLAY & SLICING ENGINE",
+        badge: "GAMEPLAY",
+      },
+      {
+        type: "image",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-26%20133332.png",
+        alt: "SLICE STORM game mode selection and settings",
+        caption: "SLICE STORM Game Modes & Audio Controls",
+        figureLabel: "FIGURE 2.2 — GAME MODES & SETTINGS",
+        badge: "GAME SYSTEM",
+      },
+      {
+        type: "image",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-26%20133134.png",
+        alt: "SLICE STORM player dashboard and game history",
+        caption: "SLICE STORM Player Dashboard & Progress",
+        figureLabel: "FIGURE 2.3 — PLAYER PROGRESS & ANALYTICS",
+        badge: "PLAYER DATA",
+      },
+    ],
+
+    // RESULTS & IMPACT
+    results: [
+      {
+        value: "3",
+        label: "GAME MODES",
+        description:
+          "Designed Classic, Arcade, and Zen gameplay experiences with distinct rules and session behavior.",
+      },
+      {
+        value: "MERN",
+        label: "FULL-STACK ARCHITECTURE",
+        description:
+          "Integrated a React and TypeScript frontend with an Express API and MongoDB-backed persistence.",
+      },
+      {
+        value: "REAL-TIME",
+        label: "CANVAS GAMEPLAY",
+        description:
+          "Built interactive fruit movement, slicing detection, visual effects, and gameplay feedback around a dedicated canvas engine.",
+      },
+      {
+        value: "PERSISTENT",
+        label: "PLAYER PROGRESSION",
+        description:
+          "Designed backend support for authenticated players, game results, gameplay history, statistics, and competitive leaderboards.",
+      },
+    ],
+
+    outcome:
+      "Gained practical experience in full-stack game development, real-time canvas rendering, interactive physics, frontend state management, REST API design, MongoDB data modeling, authentication, gameplay optimization, and iterative debugging while developing an arcade game during an internship.",
+
+    // LINKS
+    demoUrl: "https://slice-storm.onrender.com/",
+    codeUrl: "https://github.com/amansahux/slice-storm",
+    versionLabel: "VERSION 1.0.0",
+
+    nextProject: "snitch",
+
+    imageSrc: "https://ik.imagekit.io/sg9dyvpi0/91f77c68-e368-4332-9aa6-39826674492d.png",
+    imageAlt: "SLICE STORM Full-Stack Fruit-Slicing Arcade Game",
+  },
+
+  // ==========================================================
+  // 03. SNITCH
   // ==========================================================
 
   {
     slug: "snitch",
-    number: "02",
-    archiveLabel: "02 // ARCHIVE",
+    number: "03",
+    archiveLabel: "03 // ARCHIVE",
     category: "E-COMMERCE SHOP",
     title: "SNITCH",
     subtitle: "Full-Stack Fashion Commerce Platform",
@@ -373,19 +538,173 @@ export const projectsData: ProjectItem[] = [
     codeUrl: "https://github.com/amansahux/Snitch",
     versionLabel: "VERSION 1.4.0-PROD",
 
-    nextProject: "resume-builder",
+    nextProject: "team-sync",
 
     imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Snitch%20Mast.png",
     imageAlt: "SNITCH Full-Stack Commerce Platform",
   },
 
   // ==========================================================
-  // 03. RESUME BUILDER
+  // 04. TEAM SYNC
+  // ==========================================================
+
+  {
+    slug: "team-sync",
+    number: "04",
+    archiveLabel: "04 // ARCHIVE",
+    category: "EMPLOYEE COLLABORATION",
+    title: "TEAM SYNC",
+    subtitle: "Employee Management & Team Collaboration Platform",
+
+    description:
+      "A full-stack employee management and collaboration platform with role-based access, task assignment, department management, real-time communication, file sharing, and personal workspace controls.",
+
+    // CONTEXT & SCOPE
+    client: "Personal Project",
+    timeline: "Self-Directed",
+    role: "Full-Stack Developer",
+    team: "Solo Developer",
+    year: "2026",
+    status: "Production Ready",
+
+    // PROCESS & STRATEGY
+    problem:
+      "Managing employees, team communication, assigned work, and department activities across separate tools creates unnecessary complexity. The goal was to build one application connecting people, communication, and daily tasks through role-specific workflows.",
+
+    approach:
+      "Designed separate Admin and Employee workflows with backend-enforced role authorization. Combined REST APIs for management operations with Socket.IO for real-time communication, while using TanStack Query and Redux to keep application and server state organized.",
+
+    architecture:
+      "Built with React and Tailwind CSS on the frontend and Node.js, Express, MongoDB, and Mongoose on the backend. Uses JWT cookie authentication, layered controllers and services, Socket.IO channels, Multer-based uploads, and feature-based frontend architecture.",
+
+    decisions: [
+      "Used JWT authentication with HTTP cookies for protected user sessions.",
+      "Implemented backend role-based authorization for separate Admin and Employee permissions.",
+      "Structured the frontend into feature modules with dedicated APIs, hooks, state, and UI layers.",
+      "Used TanStack Query for server state and API cache synchronization.",
+      "Implemented Socket.IO for real-time team communication and channel-based messaging.",
+      "Separated file uploads from WebSocket messages to keep realtime communication lightweight.",
+      "Added resource-level authorization so employees can only update their assigned tasks.",
+    ],
+
+    technologies: [
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "Socket.IO",
+      "TanStack Query",
+      "Redux",
+      "JWT",
+      "Tailwind CSS",
+    ],
+
+    features: [
+      {
+        number: "01",
+        title: "Role-Based Management",
+        description:
+          "Separate Admin and Employee workflows with backend-enforced authentication and authorization.",
+      },
+      {
+        number: "02",
+        title: "Task Management",
+        description:
+          "Admins can create and assign tasks while employees track and update their assigned work.",
+      },
+      {
+        number: "03",
+        title: "Real-Time Team Chat",
+        description:
+          "Socket.IO-powered channels support realtime messaging, attachments, and message management.",
+      },
+      {
+        number: "04",
+        title: "Employee & Department Management",
+        description:
+          "Manage employees, departments, account status, profiles, avatars, and organization structure.",
+      },
+    ],
+
+    // VISUALS / MEDIA
+    telemetryUrl: "teamsync.app/telemetry-live",
+    telemetryStatus: "SYSTEM: OPERATIONAL",
+    media: [
+      {
+        type: "image",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-02%20233653.png",
+        alt: "TEAM SYNC Employee Management Interface",
+        caption: "Employee management and organization workspace",
+        figureLabel: "FIGURE 4.1 — EMPLOYEE MANAGEMENT",
+        badge: "ADMIN SUITE",
+      },
+      {
+        type: "image",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-02%20233609.png",
+        alt: "TEAM SYNC Real-Time Chat Interface",
+        caption: "Real-time team communication and channel-based chat",
+        figureLabel: "FIGURE 4.2 — REAL-TIME COMMUNICATION",
+        badge: "CHAT SYSTEM",
+      },
+      {
+        type: "image",
+        src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-02%20233629.png",
+        alt: "TEAM SYNC Task Management Interface",
+        caption: "Task assignment and employee workflow management",
+        figureLabel: "FIGURE 4.3 — TASK MANAGEMENT",
+        badge: "WORKFLOW",
+      },
+    ],
+
+    // RESULTS & IMPACT
+    results: [
+      {
+        value: "RBAC",
+        label: "ACCESS CONTROL",
+        description:
+          "Separate Admin and Employee permissions enforced at the backend level.",
+      },
+      {
+        value: "Real-Time",
+        label: "TEAM CHAT",
+        description:
+          "Socket.IO channels provide persistent and realtime team communication.",
+      },
+      {
+        value: "REST",
+        label: "API ARCHITECTURE",
+        description:
+          "Structured REST APIs handle employees, departments, tasks, authentication, and chat operations.",
+      },
+      {
+        value: "MERN",
+        label: "FULL-STACK",
+        description:
+          "Complete React, Node.js, Express, MongoDB application with modern state management.",
+      },
+    ],
+
+    outcome:
+      "Deepened practical experience in full-stack architecture, role-based authorization, real-time systems, task workflows, server-state management, and building feature-based React applications.",
+
+    // LINKS
+    demoUrl: "https://team-sync-live.up.railway.app",
+    codeUrl: "https://github.com/amansahux/TEAM-SYNC",
+    versionLabel: "VERSION 1.0.0-PROD",
+
+    nextProject: "resume-builder",
+
+    imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Team%20Sync%20Enterprise%20Workspace%20Showcase.png",
+    imageAlt: "TEAM SYNC Employee Management and Collaboration Platform",
+  },
+  // ==========================================================
+  // 05. RESUME BUILDER
   // ==========================================================
   {
     slug: "resume-builder",
-    number: "03",
-    archiveLabel: "03 // ARCHIVE",
+    number: "05",
+    archiveLabel: "05 // ARCHIVE",
     category: "AI POWERED",
     title: "RESUME BUILDER",
     subtitle: "AI-Powered Resume Creation Platform",
@@ -519,160 +838,11 @@ export const projectsData: ProjectItem[] = [
     codeUrl: "https://github.com/amansahux/Resume-Builder",
     versionLabel: "VERSION 1.2.0-PROD",
 
-    nextProject: "snitch",
+    nextProject: "recoz-feedback",
 
     imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Resume%20Builder.png?updatedAt=1781882255849",
     imageAlt: "AI-Powered Resume Builder Platform",
   },
-  {
-  slug: "team-sync",
-  number: "04",
-  archiveLabel: "04 // ARCHIVE",
-  category: "EMPLOYEE COLLABORATION",
-  title: "TEAM SYNC",
-  subtitle: "Employee Management & Team Collaboration Platform",
 
-  description:
-    "A full-stack employee management and collaboration platform with role-based access, task assignment, department management, real-time communication, file sharing, and personal workspace controls.",
-
-  // CONTEXT & SCOPE
-  client: "Personal Project",
-  timeline: "Self-Directed",
-  role: "Full-Stack Developer",
-  team: "Solo Developer",
-  year: "2026",
-  status: "Production Ready",
-
-  // PROCESS & STRATEGY
-  problem:
-    "Managing employees, team communication, assigned work, and department activities across separate tools creates unnecessary complexity. The goal was to build one application connecting people, communication, and daily tasks through role-specific workflows.",
-
-  approach:
-    "Designed separate Admin and Employee workflows with backend-enforced role authorization. Combined REST APIs for management operations with Socket.IO for real-time communication, while using TanStack Query and Redux to keep application and server state organized.",
-
-  architecture:
-    "Built with React and Tailwind CSS on the frontend and Node.js, Express, MongoDB, and Mongoose on the backend. Uses JWT cookie authentication, layered controllers and services, Socket.IO channels, Multer-based uploads, and feature-based frontend architecture.",
-
-  decisions: [
-    "Used JWT authentication with HTTP cookies for protected user sessions.",
-    "Implemented backend role-based authorization for separate Admin and Employee permissions.",
-    "Structured the frontend into feature modules with dedicated APIs, hooks, state, and UI layers.",
-    "Used TanStack Query for server state and API cache synchronization.",
-    "Implemented Socket.IO for real-time team communication and channel-based messaging.",
-    "Separated file uploads from WebSocket messages to keep realtime communication lightweight.",
-    "Added resource-level authorization so employees can only update their assigned tasks.",
-  ],
-
-  technologies: [
-    "React",
-    "Node.js",
-    "Express.js",
-    "MongoDB",
-    "Mongoose",
-    "Socket.IO",
-    "TanStack Query",
-    "Redux",
-    "JWT",
-    "Tailwind CSS",
-  ],
-
-  features: [
-    {
-      number: "01",
-      title: "Role-Based Management",
-      description:
-        "Separate Admin and Employee workflows with backend-enforced authentication and authorization.",
-    },
-    {
-      number: "02",
-      title: "Task Management",
-      description:
-        "Admins can create and assign tasks while employees track and update their assigned work.",
-    },
-    {
-      number: "03",
-      title: "Real-Time Team Chat",
-      description:
-        "Socket.IO-powered channels support realtime messaging, attachments, and message management.",
-    },
-    {
-      number: "04",
-      title: "Employee & Department Management",
-      description:
-        "Manage employees, departments, account status, profiles, avatars, and organization structure.",
-    },
-  ],
-
-  // VISUALS / MEDIA
-  telemetryUrl: "teamsync.app/telemetry-live",
-  telemetryStatus: "SYSTEM: OPERATIONAL",
-  media: [
-    {
-      type: "image",
-      src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-02%20233653.png",
-      alt: "TEAM SYNC Employee Management Interface",
-      caption: "Employee management and organization workspace",
-      figureLabel: "FIGURE 4.1 — EMPLOYEE MANAGEMENT",
-      badge: "ADMIN SUITE",
-    },
-    {
-      type: "image",
-      src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-02%20233609.png",
-      alt: "TEAM SYNC Real-Time Chat Interface",
-      caption: "Real-time team communication and channel-based chat",
-      figureLabel: "FIGURE 4.2 — REAL-TIME COMMUNICATION",
-      badge: "CHAT SYSTEM",
-    },
-    {
-      type: "image",
-      src: "https://ik.imagekit.io/sg9dyvpi0/Screenshot%202026-10-02%20233629.png",
-      alt: "TEAM SYNC Task Management Interface",
-      caption: "Task assignment and employee workflow management",
-      figureLabel: "FIGURE 4.3 — TASK MANAGEMENT",
-      badge: "WORKFLOW",
-    },
-  ],
-
-  // RESULTS & IMPACT
-  results: [
-    {
-      value: "RBAC",
-      label: "ACCESS CONTROL",
-      description:
-        "Separate Admin and Employee permissions enforced at the backend level.",
-    },
-    {
-      value: "Real-Time",
-      label: "TEAM CHAT",
-      description:
-        "Socket.IO channels provide persistent and realtime team communication.",
-    },
-    {
-      value: "REST",
-      label: "API ARCHITECTURE",
-      description:
-        "Structured REST APIs handle employees, departments, tasks, authentication, and chat operations.",
-    },
-    {
-      value: "MERN",
-      label: "FULL-STACK",
-      description:
-        "Complete React, Node.js, Express, MongoDB application with modern state management.",
-    },
-  ],
-
-  outcome:
-    "Deepened practical experience in full-stack architecture, role-based authorization, real-time systems, task workflows, server-state management, and building feature-based React applications.",
-
-  // LINKS
-  demoUrl: "https://team-sync-live.up.railway.app",
-  codeUrl: "https://github.com/amansahux/TEAM-SYNC",
-  versionLabel: "VERSION 1.0.0-PROD",
-
-  nextProject: "recoz-feedback",
-
-  imageSrc: "https://ik.imagekit.io/sg9dyvpi0/Team%20Sync%20Enterprise%20Workspace%20Showcase.png",
-  imageAlt: "TEAM SYNC Employee Management and Collaboration Platform",
-},
 
 ];
